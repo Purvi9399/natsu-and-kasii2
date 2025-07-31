@@ -1,0 +1,145 @@
+---
+import '../styles/global.css';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Natsu & Kasii — Travel Memoir</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zeyada&family=Ephesis&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom, #fff5f7, #fde2e4);
+        font-family: 'Ephesis', cursive;
+        overflow-x: hidden;
+      }
+
+      .wrapper {
+        padding: 4rem 2rem;
+        text-align: center;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 4rem;
+        color: #de5d83;
+        margin-bottom: 0.5rem;
+        font-family: 'Zeyada', cursive;
+      }
+
+      p {
+        font-size: 1.8rem;
+        color: #5a4e4d;
+        font-family: 'Ephesis', cursive;
+      }
+
+      .city-grid {
+        margin-top: 4rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .card:hover {
+        transform: scale(1.02);
+      }
+
+      .card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-bottom: 1px solid #f8d7da;
+      }
+
+      .card-content {
+        padding: 1.5rem;
+      }
+
+      .card h2 {
+        margin: 0;
+        font-size: 2rem;
+        color: #c94d7c;
+        font-family: 'Zeyada', cursive;
+      }
+
+      .card p {
+        font-size: 1.4rem;
+        color: #666;
+        font-family: 'Ephesis', cursive;
+      }
+
+      .animated-bg {
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, #ffdde1, #f3c6d3);
+        filter: blur(60px);
+        z-index: -1;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="animated-bg"></div>
+    <div class="wrapper">
+      <h1>Natsu & Kasii</h1>
+      <p>
+        A dreamy travel scrapbook of two bestfriends Purvi & Ayushi — where city streets become memories, coffees become poetry, and train rides echo laughter.
+      </p>
+
+      <div class="city-grid">
+        <div class="card">
+          <img src="/images/berlin.png" alt="Berlin" />
+          <div class="card-content">
+            <h2>Berlin</h2>
+            <p>The city of walls, scars, and soul-stirring street jazz.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="/images/edinburgh.png" alt="Edinburgh" />
+          <div class="card-content">
+            <h2>Edinburgh</h2>
+            <p>Rain, books, castles — and the scent of stories.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="/images/paris.png" alt="Paris" />
+          <div class="card-content">
+            <h2>Paris</h2>
+            <p>More than romance — a diary written in croissants and cobblestones.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="/images/prague.png" alt="Prague" />
+          <div class="card-content">
+            <h2>Prague</h2>
+            <p>Golden rooftops, time machines, and quiet love letters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

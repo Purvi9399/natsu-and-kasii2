@@ -1,87 +1,62 @@
-# Natsu & Kasii ✈️🌸
+# Astro Starter Kit: Blog
 
-**A soft and soulful travel diary by Purvi & Ayushi**  
-_“Because the world is too beautiful not to remember together.”_
+```sh
+npm create astro@latest -- --template blog
+```
 
----
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## 💫 About the Project
+Features:
 
-**Natsu & Kasii** is not just a travel blog — it is a shared memory box. A digital diary. A canvas painted with cities, friendship, nostalgia, and the feeling of “natsukashii” — that beautiful Japanese word for the gentle ache of remembering something precious.
+- ✅ Minimal styling (make it your own!)
+- ✅ 100/100 Lighthouse performance
+- ✅ SEO-friendly with canonical URLs and OpenGraph data
+- ✅ Sitemap support
+- ✅ RSS Feed support
+- ✅ Markdown & MDX support
 
-Built by **two best friends**, this project is a love letter to every place we’ve been together — from the cobbled charm of Prague to the poetic dusk of Paris. Every card, every image, and every word on this site is a frozen heartbeat of our journey.
+## 🚀 Project Structure
 
----
+Inside of your Astro project, you'll see the following folders and files:
 
-## 🌸 Why “Natsu & Kasii”?
+```text
+├── public/
+├── src/
+│   ├── components/
+│   ├── content/
+│   ├── layouts/
+│   └── pages/
+├── astro.config.mjs
+├── README.md
+├── package.json
+└── tsconfig.json
+```
 
-Inspired by the word **natsukashii (懐かしい)** — which evokes a tender longing for something dear in the past — we imagined two characters, *Natsu* and *Kasii*, as mirrors of ourselves. They wander together, collect cities like souvenirs, and pour stories into this evolving space.
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-We wanted a name that felt soft, lyrical, and symbolic — and one that *no one else had*.  
-**Natsu & Kasii is us. And maybe, it’s you too.**
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
----
+The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
 
-## 🎨 Vision & Design
+Any static assets, like images, can be placed in the `public/` directory.
 
-We dreamt of a site that felt like:
-- A scrapbook spilled across your screen 📖
-- A polaroid wall you could touch 📸
-- A whispered memory brought to life 💭
+## 🧞 Commands
 
-So we built it with:
-- **Pastel colour palettes** (blush pinks, beige creams, lavender greys)
-- **Rare custom fonts** (that feel handwritten and nostalgic)
-- **Pinterest-style masonry grid** for city cards
-- **GSAP animations** for soft scroll and fade-in moments
-- **Responsive & interactive UI** that feels alive and gentle
+All commands are run from the root of the project, from a terminal:
 
----
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 🧑‍💻 Tech Stack
+## 👀 Want to learn more?
 
-- [Astro](https://astro.build/) — Blazing fast static site generator
-- [GSAP](https://greensock.com/gsap/) — Magical animations
-- [Custom CSS Grid/Flex] — For full layout control
-- [GitHub Pages or Netlify] — Easy free hosting
-- [Velvetyne & Future Fonts] — For uniquely expressive typography
+Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
 
----
+## Credit
 
-## 🗺️ Featured Cities
-
-So far, we’ve wandered through:
-
-- 🇩🇪 Berlin
-- 🇫🇷 Paris & Versailles
-- 🇨🇿 Prague
-- 🇦🇹 Vienna
-- 🇬🇧 Glasgow, Edinburgh, Belfast, Londonderry
-- 🇮🇳 Delhi, Mumbai
-
-Each city gets its own *visual poem* — a photo, a caption, and a shared moment.
-
----
-
-## ❤️ Built By
-
-- **Purvi Jain** — Philosopher, Writer, Photographer
-- **Ayushi** — Coder at Amazon, Influencer, Explorer
-
----
-
-## 📌 Our Dream
-
-This is not just a side project.  
-We want **Natsu & Kasii** to grow into a brand, a visual space, maybe even a book one day.
-
-We want people to remember places not just with guides, but with feelings.  
-And maybe, to travel a little more slowly. A little more soulfully.
-
----
-
-## ✨ Stay with us
-
-If you’re someone who believes that the world is too beautiful to forget —  
-Welcome to **Natsu & Kasii.**
-
+This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
