@@ -1,0 +1,282 @@
+---
+// props: city object from the data file
+import type { City } from '../data/cities';
+const { city } = Astro.props as { city: City };
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{city.name} · Natsu & Kasii</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="/global.css" />
+    <style>
+      :root {
+        --accent: {city.accent};
+      }
+      body {
+        margin: 0;
+        font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;
+        background: #fff9fb;
+        color: #222;
+        scroll-behavior: smooth;
+      }
+      .hero {
+        position: relative;
+        padding: 4rem 1rem 2rem;
+        background: {city.gradient};
+        text-align: center;
+        border-radius: 0 0 32px 32px;
+        margin-bottom: 2rem;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        margin: 0;
+        color: var(--accent);
+        letter-spacing: 0.5px;
+      }
+      .hero p {
+        max-width: 700px;
+        margin: 0.5rem auto 0;
+        font-size: 1.1rem;
+        line-height: 1.5;
+      }
+      .section {
+        max-width: 1000px;
+        margin: 3rem auto;
+        padding: 0 1rem;
+      }
+      .section h2 {
+        position: relative;
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        display: inline-block;
+      }
+      .section h2::before {
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: 8px;
+        width: 6px;
+        height: 60%;
+        background: var(--accent);
+        border-radius: 3px;
+      }
+      .cards {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      }
+      .small-card {
+        background: #fff;
+        padding: 1rem 1.25rem;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.04);
+        position: relative;
+        overflow: hidden;
+        transition: transform .25s ease, box-shadow .25s ease;
+      }
+      .small-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+      }
+      .postcards-grid {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .postcard {
+        width: 260px;
+        height: 340px;
+        perspective: 1000px;
+      }
+      .postcard-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform .6s;
+        transform-style: preserve-3d;
+        box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      }
+      .postcard:hover .postcard-inner {
+        transform: rotateY(180deg);
+      }
+      .postcard-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+      }
+      .postcard-front img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .postcard-back {
+        background: #fff;
+        padding: 1rem;
+        box-sizing: border-box;
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .btn {
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        padding: .75rem 1.25rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: .5rem;
+        transition: filter .2s ease;
+      }
+      .btn:hover {
+        filter: brightness(1.1);
+      }
+      .itinerary {
+        background: #fdf4f9;
+        border-radius: 20px;
+        padding: 1.75rem;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      }
+      .footer {
+        text-align: center;
+        margin: 4rem 0 2rem;
+        font-size: .85rem;
+        color: #666;
+      }
+      .anchor-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+        font-size: .9rem;
+      }
+      .anchor-links a {
+        text-decoration: none;
+        color: var(--accent);
+        padding: 4px 10px;
+        border-radius: 8px;
+        background: rgba(217,68,124,.07);
+      }
+    </style>
+  </head>
+  <body>
+    <nav style="padding:1rem;display:flex;justify-content:center;gap:1.5rem;background:#fdebef;position:sticky;top:0;z-index:10;">
+      <a href="/">Home</a>
+      <a href="/#cities">Cities</a>
+      <a href="/blog">Blog</a>
+      <a href="/about">About</a>
+    </nav>
+
+    <section class="hero" aria-label="{city.name} hero">
+      <div class="anchor-links">
+        <a href="#best-time">Golden Hours</a>
+        <a href="#savor-stroll">Savor &amp; Stroll</a>
+        <a href="#postcards">Paper Trails</a>
+        <a href="#things-to-do">Pulse Points</a>
+        <a href="#custom-compass">Journey</a>
+      </div>
+      <h1>{city.name}</h1>
+      <p>{city.description}</p>
+    </section>
+
+    <div class="section" id="best-time">
+      <h2>Golden Hours</h2>
+      <p>{city.bestTime}</p>
+    </div>
+
+    <div class="section" id="savor-stroll">
+      <h2>Savor &amp; Stroll</h2>
+      <div class="cards">
+        {city.savorStroll.map(item => (
+          <div class="small-card">
+            <strong>{item.title}</strong>
+            <p style="margin: .5rem 0 0;">{item.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="section" id="postcards">
+      <h2>Paper Trails</h2>
+      <div class="postcards-grid">
+        {city.postcards.map(p => (
+          <div class="postcard">
+            <div class="postcard-inner">
+              <div class="postcard-face postcard-front">
+                <img src={p.image} alt={p.caption} loading="lazy" />
+              </div>
+              <div class="postcard-face postcard-back">
+                <p style="font-size:.95rem;line-height:1.4;">{p.caption}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="section" id="things-to-do">
+      <h2>Pulse Points</h2>
+      <div class="cards">
+        {city.thingsToDo.map(t => (
+          <div class="small-card">
+            <strong>{t.title}</strong>
+            <p style="margin: .5rem 0 0;">{t.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="section" id="custom-compass">
+      <h2>Custom Compass</h2>
+      <div class="itinerary">
+        <div>
+          <strong>Why this matters</strong>
+          <p>
+            Trips feel different when they are shaped around intent. Tell us your travel style,
+            number of people, and vibe—whether it’s quiet reflection or lively discovery—and we’ll
+            send you a tailored mini-itinerary.
+          </p>
+        </div>
+        <div>
+          <strong>Quick connect</strong>
+          <p>{city.itineraryPrompt}</p>
+          <a
+            class="btn"
+            href="https://wa.me/XXXXXXXXXXX?text=Hi%20Purvi%20%26%20Ayushi!%20I%27d%20love%20a%20custom%20itinerary%20for%20{city.name}%20from%20[DATES]%20with%20a%20[ADVENTURE/CHILL]%20vibe."
+            target="_blank"
+            rel="noopener"
+          >
+            Message on WhatsApp
+          </a>
+        </div>
+        <div>
+          <strong>Stay in the loop</strong>
+          <p>Subscribe to new stories and fresh city drops.</p>
+          <form
+            on:submit="event.preventDefault(); alert('Subscribed! (hook this up to real backend later)')"
+          >
+            <input
+              type="email"
+              placeholder="you@example.com"
+              required
+              style="padding:.75rem;border-radius:8px;border:1px solid #ccc;width:100%;box-sizing:border-box;"
+            />
+            <button class="btn" type="submit" style="margin-top:.5rem;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>© 2025 Natsu &amp; Kashii. All rights reserved.</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,451 @@
+---
+title: "Versailles"
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Versailles · Natsu & Kasii</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fonts: regal / refined -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Merriweather:ital,wght@0,400;0,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f2eee6;
+        --card: #ffffff;
+        --text: #2d2c34;
+        --muted: #7a7180;
+        --accent: #2f4f81;
+        --accent2: #c9b36b;
+        --radius: 12px;
+        --shadow: 0 25px 70px -10px rgba(47,79,129,0.1);
+        --transition: 0.3s ease;
+        --heading: "Playfair Display", serif;
+        --body: "Merriweather", serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: var(--body);
+        background: var(--bg);
+        color: var(--text);
+        scroll-behavior: smooth;
+        padding: 60px 1rem 120px;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .back {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+      }
+
+      .mini-nav {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+      }
+      .mini-nav a {
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(201,179,107,0.15);
+        font-weight: 600;
+        transition: background var(--transition);
+      }
+      .mini-nav a:hover {
+        background: rgba(201,179,107,0.25);
+      }
+
+      .hero {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .hero h1 {
+        font-family: var(--heading);
+        font-size: 3rem;
+        margin: 0;
+        color: var(--accent);
+      }
+      .subtitle {
+        font-size: 1rem;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      .section {
+        margin: 2.5rem 0;
+      }
+      .section h2 {
+        font-family: var(--heading);
+        font-size: 2.2rem;
+        margin-bottom: 4px;
+        position: relative;
+        display: inline-block;
+      }
+      .section h2::after {
+        content: "";
+        display: block;
+        height: 4px;
+        width: 60px;
+        background: var(--accent2);
+        border-radius: 2px;
+        margin-top: 6px;
+      }
+      .desc {
+        margin: 8px 0 14px;
+        color: var(--muted);
+        max-width: 700px;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 1.25rem 1.5rem;
+        box-shadow: var(--shadow);
+        transition: transform var(--transition), box-shadow var(--transition);
+        position: relative;
+      }
+      .card h3 {
+        margin: 0 0 8px;
+        font-family: var(--heading);
+        font-size: 1.25rem;
+      }
+      .card p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      .label {
+        display: inline-block;
+        background: var(--accent2);
+        color: #2d2c34;
+        padding: 4px 12px;
+        border-radius: 999px;
+        font-size: 0.55rem;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+
+      .postcards {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 1.5rem 0;
+        justify-content: center;
+      }
+      .postcard {
+        width: 260px;
+        height: 160px;
+        perspective: 1000px;
+      }
+      .postcard-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        transition: transform 0.75s;
+        transform-style: preserve-3d;
+        box-shadow: 0 25px 60px -5px rgba(0,0,0,0.08);
+      }
+      .postcard:hover .postcard-inner {
+        transform: rotateY(180deg);
+      }
+      .postcard-face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .postcard-front img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .postcard-back {
+        background: var(--accent);
+        color: white;
+        transform: rotateY(180deg);
+        padding: 12px;
+        font-size: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .postcard-back .title {
+        font-family: var(--heading);
+        margin: 0 0 4px;
+      }
+
+      .itinerary-box {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        margin-top: 1rem;
+      }
+      .itinerary-box .field {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+      }
+      .itinerary-box label {
+        font-size: 0.6rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        letter-spacing: 0.7px;
+      }
+      .itinerary-box input,
+      .itinerary-box select {
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 0.9rem;
+      }
+
+      .btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: var(--transition);
+      }
+      .btn:hover {
+        filter: brightness(1.05);
+      }
+
+      .itinerary-toolbar {
+        background: var(--card);
+        position: sticky;
+        bottom: 14px;
+        right: 14px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        box-shadow: 0 25px 60px -5px rgba(47,79,129,0.2);
+        display: none;
+        gap: 10px;
+        font-size: 0.8rem;
+        max-width: 320px;
+        margin-top: 30px;
+      }
+      .itinerary-toolbar.active {
+        display: flex;
+      }
+      .mini-itin-badge {
+        background: var(--accent2);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.55rem;
+        margin-bottom: 6px;
+      }
+
+      .save-heart {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform .3s ease;
+      }
+      .save-heart svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--accent);
+        fill: transparent;
+        stroke-width: 2;
+        transition: all .3s ease;
+      }
+      .save-heart.saved svg {
+        fill: var(--accent);
+        stroke: #fff;
+      }
+
+      @media (max-width: 900px){
+        .postcards { flex-direction: column; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="back">
+        <a href="/"><strong>← Back to Home</strong></a>
+      </div>
+
+      <!-- mini nav -->
+      <div class="mini-nav">
+        <a href="#must-visit">Must Visit</a>
+        <a href="#views">Best Views</a>
+        <a href="#postcards">Postcards</a>
+        <a href="#itinerary">Your Itinerary</a>
+      </div>
+
+      <!-- Hero -->
+      <section class="hero" id="must-visit">
+        <h1>Versailles</h1>
+        <div class="subtitle">
+          Royal whispers, mirrored halls, and gardens that stretch like curated dreams.
+        </div>
+        <div class="card" style="display:flex; gap:20px; flex-wrap:wrap; margin-top:16px;">
+          <div style="flex:1; min-width:200px;">
+            <div class="label">Essentials</div>
+            <h3 style="margin:0;">Quick Intro</h3>
+            <p>
+              A short ride from Paris—home to opulent monarchy memory, grand fountains, and perfectly staged nature. Best visited in morning light or late afternoon when the gardens shift in gold.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Best Views -->
+      <section class="section" id="views">
+        <h2>Best Views</h2>
+        <div class="desc">
+          Moments that feel curated by royalty—mirrored halls, fountain axes, and sweeping garden lines.
+        </div>
+        <div class="grid" style="display:grid; gap:16px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));">
+          <div class="card" data-id="Hall of Mirrors">
+            <div class="label">Grandeur</div>
+            <h3>Hall of Mirrors</h3>
+            <p>
+              Reflections folding into reflections—light pours in, and the room becomes a living jewel box.
+            </p>
+          </div>
+          <div class="card" data-id="Fountain Gardens">
+            <div class="label">Sweep</div>
+            <h3>Fountain Axes</h3>
+            <p>
+              The rhythmic cascade of water and geometry—best experienced during a fountain show to feel movement in stillness.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Postcards -->
+      <section class="section" id="postcards">
+        <h2>Postcards</h2>
+        <div class="desc">
+          Tiny memory pieces—gold trim, quiet corridors, and garden expanses that whisper time.
+        </div>
+        <div class="postcards">
+          <div class="postcard">
+            <div class="postcard-inner">
+              <div class="postcard-face postcard-front">
+                <img src="/images/versailles.png" alt="Fountain reflection" />
+              </div>
+              <div class="postcard-face postcard-back">
+                <div class="title">Fountain Axis</div>
+                <div class="note">
+                  Water choreographed, symmetry infinite—felt like walking through a painted dream.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="postcard">
+            <div class="postcard-inner">
+              <div class="postcard-face postcard-front">
+                <img src="/images/paris.png" alt="Mirror hall" />
+              </div>
+              <div class="postcard-face postcard-back">
+                <div class="title">Mirrored Light</div>
+                <div class="note">
+                  Light doubled, gold amplified—the Hall felt like royalty’s secret diary.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Itinerary -->
+      <section class="section" id="itinerary">
+        <h2>Get Your Versailles Itinerary</h2>
+        <div class="desc">
+          Quick curated plan—palace first, garden wander, and a quiet pause. Tell us group size and mood; continue on WhatsApp.
+        </div>
+        <div class="itinerary-box">
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <div class="field" style="flex:1; min-width:160px;">
+              <label for="vibe-v">Vibe</label>
+              <select id="vibe-v">
+                <option value="royal">Royal / Grand</option>
+                <option value="slow">Slow Garden</option>
+                <option value="combo">Mixed</option>
+              </select>
+            </div>
+            <div class="field" style="flex:1; min-width:160px;">
+              <label for="people-v">Group Size</label>
+              <input type="number" id="people-v" min="1" value="2" />
+            </div>
+          </div>
+          <div style="margin-top:8px;">
+            <p style="margin:6px 0;">
+              We'll send a simple itinerary—palace, key gardens, and a memory pause. Continue on WhatsApp.
+            </p>
+            <button class="btn" id="whatsapp-versailles">Get Itinerary on WhatsApp</button>
+            <small style="display:block; margin-top:4px; color:#555;">
+              Replace <code>+1234567890</code> with your real WhatsApp number.
+            </small>
+          </div>
+        </div>
+
+        <!-- Mini itinerary summary -->
+        <div class="itinerary-toolbar" id="itinerary-toolbar">
+          <div style="flex:1;">
+            <div class="mini-itin-badge">Your Versailles Plan</div>
+            <div id="itinerary-text">No selections yet.</div>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn sm" id="share-whatsapp">Share on WhatsApp</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // simple WhatsApp itinerary for Versailles
+      document.getElementById("whatsapp-versailles").addEventListener("click", () => {
+        const vibe = document.getElementById("vibe-v").value;
+        const people = document.getElementById("people-v").value;
+        let msg = `Hi! I'd love a short Versailles itinerary.%0A`;
+        msg += `Vibe: ${vibe}%0AGroup size: ${people}%0A`;
+        msg += `Surprise me with the highlights.`;
+        const phone = "1234567890"; // replace with real number
+        window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
+      });
+    </script>
+  </body>
+</html>

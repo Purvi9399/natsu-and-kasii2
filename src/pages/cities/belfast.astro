@@ -1,0 +1,897 @@
+---
+title: "Belfast"
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Belfast · Natsu & Kasii</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fonts: traditional + modern -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Space+Grotesk:wght@400;600&family=Dancing+Script:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f0f4f7;
+        --card: #ffffff;
+        --text: #1f2d3a;
+        --muted: #5f6c7a;
+        --accent: #045d6b;
+        --accent2: #62a5b3;
+        --highlight: #d9a066;
+        --radius: 14px;
+        --shadow: 0 30px 80px -10px rgba(4,93,107,0.15);
+        --transition: 0.3s cubic-bezier(.3,.2,.2,1);
+        --heading: "Libre Baskerville", serif;
+        --body: "Space Grotesk", sans-serif;
+        --quote: "Dancing Script", cursive;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: var(--body);
+        background: var(--bg);
+        color: var(--text);
+        scroll-behavior: smooth;
+        padding: 60px 1rem 140px;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container { max-width: 1000px; margin: 0 auto; }
+
+      .back { font-size: 0.9rem; margin-bottom: 6px; }
+      .back a { font-weight: 600; }
+
+      .mini-nav {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+      }
+      .mini-nav a {
+        padding: 7px 14px;
+        border-radius: 999px;
+        background: rgba(4,93,107,0.1);
+        font-weight: 600;
+        transition: background var(--transition);
+      }
+      .mini-nav a.active,
+      .mini-nav a:hover {
+        background: var(--accent2);
+        color: #fff;
+      }
+
+      .hero {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+      .hero h1 {
+        font-family: var(--heading);
+        font-size: 3.4rem;
+        margin: 0;
+        color: var(--accent);
+      }
+      .subtitle {
+        font-size: 1rem;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 1.25rem 1.5rem;
+        box-shadow: var(--shadow);
+        transition: transform var(--transition), box-shadow var(--transition);
+        position: relative;
+        margin-top: 14px;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 40px 100px -10px rgba(4,93,107,0.2);
+      }
+      .card h3 {
+        margin: 0 0 6px;
+        font-family: var(--heading);
+        font-size: 1.35rem;
+      }
+      .card p {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+
+      .label {
+        display: inline-block;
+        background: var(--highlight);
+        color: #1f2d3a;
+        padding: 4px 12px;
+        border-radius: 999px;
+        font-size: 0.55rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .quotes {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin: 2rem 0 3rem;
+      }
+      .quote-box {
+        position: relative;
+        background: #ffffff;
+        border-left: 6px solid var(--accent);
+        padding: 16px 18px;
+        border-radius: 10px;
+        box-shadow: 0 25px 60px -10px rgba(4,93,107,0.12);
+        font-family: var(--quote);
+        font-size: 1.1rem;
+      }
+      .quote-box small {
+        display: block;
+        margin-top: 6px;
+        font-family: var(--body);
+        font-size: 0.65rem;
+        color: var(--muted);
+      }
+
+      .section {
+        margin: 3rem 0;
+      }
+      .section h2 {
+        font-family: var(--heading);
+        font-size: 2.4rem;
+        margin-bottom: 6px;
+        position: relative;
+        display: inline-block;
+      }
+      .section h2::after {
+        content: "";
+        display: block;
+        height: 4px;
+        width: 70px;
+        background: var(--accent);
+        border-radius: 3px;
+        margin-top: 6px;
+      }
+      .desc {
+        margin: 8px 0 16px;
+        color: var(--muted);
+        max-width: 750px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      }
+
+      /* Postcards flip */
+      .postcards {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin: 1.5rem 0;
+        justify-content: center;
+      }
+      .postcard {
+        width: 280px;
+        height: 170px;
+        perspective: 1000px;
+        position: relative;
+      }
+      .postcard-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 14px;
+        transition: transform 0.7s;
+        transform-style: preserve-3d;
+        box-shadow: 0 30px 80px -10px rgba(4,93,107,0.15);
+        cursor: pointer;
+      }
+      .postcard:hover .postcard-inner {
+        transform: rotateY(180deg);
+      }
+      .postcard-face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        border-radius: 14px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      .postcard-front img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .postcard-back {
+        background: var(--accent);
+        color: white;
+        transform: rotateY(180deg);
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .postcard-back .title {
+        margin: 0 0 6px;
+        font-family: var(--heading);
+        font-size: 1rem;
+      }
+      .postcard-back .note {
+        font-size: 0.75rem;
+      }
+
+      /* Itinerary builder */
+      .itinerary-box {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 1.5rem 1.75rem;
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .fields {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .field {
+        flex: 1;
+        min-width: 160px;
+        display: flex;
+        flex-direction: column;
+      }
+      .field label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: #555;
+      }
+      .field select,
+      .field input {
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #d3d9e0;
+        font-size: 0.9rem;
+        outline: none;
+      }
+      .btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: var(--transition);
+        display: inline-block;
+      }
+      .btn:hover { filter: brightness(1.05); }
+
+      /* Saved itinerary toolbar */
+      .itinerary-toolbar {
+        background: var(--card);
+        position: sticky;
+        bottom: 14px;
+        right: 14px;
+        padding: 14px 18px;
+        border-radius: 12px;
+        box-shadow: 0 35px 90px -10px rgba(4,93,107,0.2);
+        display: none;
+        gap: 10px;
+        font-size: 0.8rem;
+        max-width: 360px;
+        margin-top: 30px;
+      }
+      .itinerary-toolbar.active {
+        display: flex;
+      }
+      .mini-itin-badge {
+        background: var(--highlight);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.55rem;
+        margin-bottom: 4px;
+        display: inline-block;
+        font-weight: 600;
+      }
+      .itinerary-text {
+        font-size: 0.85rem;
+        line-height: 1.2;
+      }
+
+      .pill {
+        background: var(--accent2);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 0.7rem;
+        margin-right: 6px;
+        display: inline-block;
+        animation: none;
+      }
+      .pill.bounce {
+        animation: bounce 0.4s;
+      }
+      @keyframes bounce {
+        0% { transform: scale(1); }
+        30% { transform: scale(1.15); }
+        100% { transform: scale(1); }
+      }
+
+      .save-heart {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform .3s ease;
+      }
+      .save-heart svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--accent);
+        fill: transparent;
+        stroke-width: 2;
+        transition: all .3s ease;
+      }
+      .save-heart.saved svg {
+        fill: var(--accent);
+        stroke: #fff;
+      }
+
+      @media (max-width: 960px) {
+        .grid { grid-template-columns: 1fr; }
+        .postcards { flex-direction: column; align-items: center; }
+        .mini-nav { justify-content: flex-start; overflow-x: auto; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="back">
+        <a href="/"><strong>← Back to Home</strong></a>
+      </div>
+
+      <div class="mini-nav" aria-label="section navigation">
+        <a href="#must-visit">Must Visit</a>
+        <a href="#views">Best Views</a>
+        <a href="#cafes">Cafes</a>
+        <a href="#nightlife">Nightlife</a>
+        <a href="#offbeat">Hidden Corners</a>
+        <a href="#postcards">Postcards</a>
+        <a href="#itinerary">Your Itinerary</a>
+      </div>
+
+      <!-- Hero / Essentials -->
+      <section class="hero" id="must-visit">
+        <h1>Belfast</h1>
+        <div class="subtitle">
+          Harbor tales, emerald hills, and a restless intimacy—where stories still echo in stone and
+          cozy corners.
+        </div>
+
+        <div class="card" style="display:flex; gap:20px; flex-wrap:wrap; margin-top:16px;">
+          <div style="flex:1; min-width:200px;">
+            <div class="label">Best Time to Visit</div>
+            <h3 style="margin:0;">Late spring to early autumn</h3>
+            <p>
+              Mild days, longer light, and vibrant street life—perfect for walking the docks and
+              exploring the hilltop views.
+            </p>
+          </div>
+          <div style="flex:1; min-width:200px;">
+            <div class="label">Quick Vibe</div>
+            <h3 style="margin:0;">Grounded & Curious</h3>
+            <p>
+              History in the foundations, warmth in the people, and quiet wonder tucked behind every
+              corner—Belfast invites slow discovery with an edge.
+            </p>
+          </div>
+        </div>
+
+        <!-- Floating quotes -->
+        <div class="quotes">
+          <div class="quote-box">
+            “Walking Belfast feels like paging through a living diary—every street has a fold.”{' '}
+            <small>— Ayushi</small>
+          </div>
+          <div class="quote-box">
+            “The harbor light at dusk makes even industrial edges look poetic.” <small>— Purvi</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- Must Visit -->
+      <section class="section" id="views">
+        <h2>Must Visit</h2>
+        <div class="desc">
+          Landmarks and anchors that shape the heartbeat—start here to feel the city’s core.
+        </div>
+        <div class="grid">
+          <div class="card" data-id="Titanic Quarter">
+            <div class="save-heart" aria-label="save Titanic Quarter">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6-4.35-9-10a7 7 0 0 1 12-5 7 7 0 0 1 12 5c-3 5.65-9 10-9 10z" />
+              </svg>
+            </div>
+            <div class="label">Historic</div>
+            <h3>Titanic Quarter</h3>
+            <p>
+              Where shipbuilding legacy meets modern storytelling—explore the dry dock, the
+              exhibitions, and the waterfront history.
+            </p>
+          </div>
+          <div class="card" data-id="St George's Market">
+            <div class="save-heart" aria-label="save St George's Market">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6-4.35-9-10a7 7 0 0 1 12-5 7 7 0 0 1 12 5c-3 5.65-9 10-9 10z" />
+              </svg>
+            </div>
+            <div class="label">Local</div>
+            <h3>St. George’s Market</h3>
+            <p>
+              Colours, sound, and regional flavor collide—perfect for tasting, browsing crafts, and
+              soaking city pulse.
+            </p>
+          </div>
+          <div class="card" data-id="Cave Hill">
+            <div class="save-heart" aria-label="save Cave Hill">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6-4.35-9-10a7 7 0 0 1 12-5 7 7 0 0 1 12 5c-3 5.65-9 10-9 10z" />
+              </svg>
+            </div>
+            <div class="label">Panorama</div>
+            <h3>Cave Hill</h3>
+            <p>
+              Overlook the city from its green crown—morning light and legends meet; a quiet, epic
+              vantage point.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Best Views -->
+      <section class="section" id="views">
+        <h2>Best Views</h2>
+        <div class="desc">
+          Perspectives that linger—harbor reflections, hilltop sweeps, and evening light that
+          softens everything.
+        </div>
+        <div class="grid">
+          <div class="card" data-id="Cave Hill Summit">
+            <div class="save-heart" aria-label="save Cave Hill Summit">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6-4.35-9-10a7 7 0 0 1 12-5 7 7 0 0 1 12 5c-3 5.65-9 10-9 10z" />
+              </svg>
+            </div>
+            <div class="label">Wide</div>
+            <h3>Cave Hill Summit</h3>
+            <p>
+              The city unfurls below; sunrise with light spilling across the harbor and hillside is
+              unforgettable.
+            </p>
+          </div>
+          <div class="card" data-id="Lagan Waterfront">
+            <div class="save-heart" aria-label="save Lagan Waterfront">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6-4.35-9-10a7 7 0 0 1 12-5 7 7 0 0 1 12 5c-3 5.65-9 10-9 10z" />
+              </svg>
+            </div>
+            <div class="label">Calm</div>
+            <h3>Lagan Waterfront</h3>
+            <p>
+              Reflections in water, walking paths, and soft light—ideal for late afternoon slow
+              wandering.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cafes -->
+      <section class="section" id="cafes">
+        <h2>Aesthetic Cafe Recommendations</h2>
+        <div class="desc">
+          Warm nooks where coffee and conversation become memory—local flavor with character.
+        </div>
+        <div class="grid">
+          <div class="card" data-id="Established Coffee">
+            <div class="save-heart" aria-label="save Established Coffee">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6-4.35-9-10a7 7 0 0 1 12-5 7 7 0 0 1 12 5c-3 5.65-9 10-9 10z" />
+              </svg>
+            </div>
+            <div class="label">Craft</div>
+            <h3>Established Coffee</h3>
+            <p>
+              Clean design, expertly pulled espresso—perfect for early work or people watching in a
+              quiet warmth.
+            </p>
+          </div>
+          <div class="card" data-id="No Alibi Belfast">
+            <div class="save-heart" aria-label="save No Alibi Belfast">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6-4.35-9-10a7 7 0 0 1 12-5 7 7 0 0 1 12 5c-3 5.65-9 10-9 10z" />
+              </svg>
+            </div>
+            <div class="label">Cozy</div>
+            <h3>No Alibi</h3>
+            <p>
+              Comfortable corners, slow pours, and a sense of belonging—great for conversations that
+              stretch.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nightlife -->
+      <section class="section" id="nightlife">
+        <h2>Nightlife</h2>
+        <div class="desc">
+          Belfast at night softens and amplifies—pub stories, music spills, and hidden bars that hold
+          their own rhythms.
+        </div>
+        <div class="grid">
+          <div class="card" data-id="Cathedral Quarter">
+            <div class="save-heart" aria-label="save Cathedral Quarter">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6-4.35-9-10a7 7 0 0 1 12-5 7 7 0 0 1 12 5c-3 5.65-9 10-9 10z" />
+              </svg>
+            </div>
+            <div class="label">Vibe</div>
+            <h3>Cathedral Quarter</h3>
+            <p>
+              Cobblestone pulse—live music venues, late-night conversations, and amber-lit pubs that
+              feel like home.
+            </p>
+          </div>
+          <div class="card" data-id="The Dirty Onion">
+            <div class="save-heart" aria-label="save The Dirty Onion">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6-4.35-9-10a7 7 0 0 1 12-5 7 7 0 0 1 12 5c-3 5.65-9 10-9 10z" />
+              </svg>
+            </div>
+            <div class="label">Local</div>
+            <h3>The Dirty Onion</h3>
+            <p>
+              A traditional pub with hidden courtyards—music, local flavor, and after-dark stories.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Offbeat / Hidden Corners -->
+      <section class="section" id="offbeat">
+        <h2>Hidden Corners</h2>
+        <div class="desc">
+          Layers beneath the obvious—quiet murals, unexpected narratives, and local curiosities you
+          stumble on when you slow down.
+        </div>
+        <div class="grid">
+          <div class="card" data-id="Peace Wall">
+            <div class="save-heart" aria-label="save Peace Wall">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6-4.35-9-10a7 7 0 0 1 12-5 7 7 0 0 1 12 5c-3 5.65-9 10-9 10z" />
+              </svg>
+            </div>
+            <div class="label">Context</div>
+            <h3>Peace Wall & Murals</h3>
+            <p>
+              Visual stories of reconciliation—walk the lines and listen to the silent conversation
+              between past and present.
+            </p>
+          </div>
+          <div class="card" data-id="Ulster Folk">
+            <div class="save-heart" aria-label="save Ulster Folk">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6-4.35-9-10a7 7 0 0 1 12-5 7 7 0 0 1 12 5c-3 5.65-9 10-9 10z" />
+              </svg>
+            </div>
+            <div class="label">Quirky</div>
+            <h3>Ulster Folk & Transport Museum</h3>
+            <p>
+              A step outside time—traditional life reconstructed; unexpected joy in everyday heritage
+              moments.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Postcards -->
+      <section class="section" id="postcards">
+        <h2>Postcards</h2>
+        <div class="desc">
+          Small flips of memory—harbor light, market chatter, hillside silence, tucked into the
+          folds of real moments.
+        </div>
+        <div class="postcards">
+          <div class="postcard">
+            <div class="postcard-inner">
+              <div class="postcard-face postcard-front">
+                <img src="/images/belfast.png" alt="Titanic Quarter view" />
+              </div>
+              <div class="postcard-face postcard-back">
+                <div class="title">Titanic Afternoon</div>
+                <div class="note">
+                  The weight of legacy felt gentle when the sun warmed the dockside and stories
+                  echoed softly.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="postcard">
+            <div class="postcard-inner">
+              <div class="postcard-face postcard-front">
+                <img src="/images/glasgow.png" alt="Market corner" />
+              </div>
+              <div class="postcard-face postcard-back">
+                <div class="title">Market Mornings</div>
+                <div class="note">
+                  Colourful chaos, local voices, and the smell of baked warmth—Belfast wakes here.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Itinerary -->
+      <section class="section" id="itinerary">
+        <h2>Get Your Belfast Itinerary</h2>
+        <div class="desc">
+          Choose your mood, tell us who's coming, and get a curated mini-plan. Continue on WhatsApp
+          with the saved selection—ready to go.
+        </div>
+        <div class="itinerary-box">
+          <div class="fields">
+            <div class="field">
+              <label for="vibe-b">Vibe</label>
+              <select id="vibe-b">
+                <option value="history">Roots & History</option>
+                <option value="cozy">Cozy & Slow</option>
+                <option value="night">Night Pulse</option>
+                <option value="mixed">Mixed</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="people-b">Group Size</label>
+              <input type="number" id="people-b" min="1" value="2" />
+            </div>
+            <div class="field">
+              <label for="dates-b">Dates (optional)</label>
+              <input type="text" id="dates-b" placeholder="e.g., 5–7 Sept" />
+            </div>
+          </div>
+          <div>
+            <p style="margin:6px 0;">
+              We'll craft: “This is your Belfast mini-itinerary for today” with your saved places,
+              numbered, and signed by Natsu & Kasii.
+            </p>
+            <button class="btn" id="whatsapp-belfast">Send on WhatsApp</button>
+          </div>
+        </div>
+
+        <!-- Mini itinerary summary -->
+        <div class="itinerary-toolbar" id="itinerary-toolbar">
+          <div style="flex:1;">
+            <div class="mini-itin-badge">Your Belfast Plan</div>
+            <div class="itinerary-text" id="itinerary-text">
+              No picks yet.
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+            <button class="btn" id="copy-link">Copy Link</button>
+            <button class="btn" id="share-whats">Share on WhatsApp</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Utility to slugify names for URL
+      function slugify(str) {
+        return encodeURIComponent(str.replace(/\s+/g, "-").toLowerCase());
+      }
+
+      // Manage saved items in localStorage
+      const STORAGE_KEY = "belfast-saved";
+      const savedSet = new Set(
+        JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")
+      );
+
+      const cards = document.querySelectorAll("[data-id]");
+      const toolbar = document.getElementById("itinerary-toolbar");
+      const itineraryTextEl = document.getElementById("itinerary-text");
+
+      function updateToolbar() {
+        if (savedSet.size === 0) {
+          toolbar.classList.remove("active");
+          itineraryTextEl.textContent = "No picks yet.";
+          return;
+        }
+        toolbar.classList.add("active");
+        const picks = Array.from(savedSet);
+        let text = `This is your Belfast mini-itinerary for today:\n`;
+        picks.forEach((p, i) => {
+          text += `${i + 1}. ${p}\n`;
+        });
+        text += `Recommended by Natsu & Kasii. View: ${window.location.href.split(
+          "#"
+        )[0]}`;
+        itineraryTextEl.textContent = text;
+      }
+
+      function persist() {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(Array.from(savedSet))
+        );
+      }
+
+      function toggleSave(cardEl) {
+        const id = cardEl.dataset.id;
+        const heart = cardEl.querySelector(".save-heart");
+        if (savedSet.has(id)) {
+          savedSet.delete(id);
+          heart.classList.remove("saved");
+        } else {
+          savedSet.add(id);
+          heart.classList.add("saved");
+          // pill bounce effect (if we had visible pills)
+        }
+        persist();
+        updateToolbar();
+      }
+
+      // Initialize hearts and click
+      cards.forEach((card) => {
+        const id = card.dataset.id;
+        const heartWrapper = card.querySelector(".save-heart");
+        if (!heartWrapper) return;
+        if (savedSet.has(id)) {
+          heartWrapper.classList.add("saved");
+          heartWrapper
+            .querySelector("svg")
+            .classList && heartWrapper.querySelector("svg").classList.add("saved");
+        }
+        heartWrapper.addEventListener("click", (e) => {
+          e.stopPropagation();
+          toggleSave(card);
+          // small bounce
+          heartWrapper.classList.add("bounce");
+          setTimeout(() => heartWrapper.classList.remove("bounce"), 400);
+        });
+      });
+
+      // Prepopulate from URL param if present
+      function loadFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.has("saved")) {
+          const list = params.get("saved").split(",");
+          list.forEach((item) => {
+            const decoded = decodeURIComponent(item);
+            savedSet.add(decoded);
+          });
+          // reflect in UI
+          cards.forEach((card) => {
+            if (savedSet.has(card.dataset.id)) {
+              const heart = card.querySelector(".save-heart");
+              heart?.classList.add("saved");
+            }
+          });
+          persist();
+          updateToolbar();
+        }
+      }
+
+      loadFromURL();
+      updateToolbar();
+
+      // Copy link with saved items
+      document.getElementById("copy-link").addEventListener("click", () => {
+        const picks = Array.from(savedSet).map((s) => encodeURIComponent(s));
+        const url = `${window.location.origin}${window.location.pathname}?saved=${picks.join(
+          ","
+        )}`;
+        navigator.clipboard.writeText(url);
+        alert("Copied mini-itinerary link!");
+      });
+
+      // Share on WhatsApp from toolbar
+      document.getElementById("share-whats").addEventListener("click", () => {
+        const vibe = document.getElementById("vibe-b").value;
+        const people = document.getElementById("people-b").value;
+        const dates = document.getElementById("dates-b").value;
+        const picks = Array.from(savedSet);
+        let msg = `Hi! Here's my Belfast mini-itinerary for today:\n`;
+        picks.forEach((p, i) => {
+          msg += `${i + 1}. ${p}\n`;
+        });
+        msg += `Vibe: ${vibe}\nGroup size: ${people}\n`;
+        if (dates.trim()) msg += `Dates: ${dates}\n`;
+        msg += `Recommended by Natsu & Kasii.\nSee more: ${window.location.href
+          .split("#")[0]
+          .replaceAll(" ", "%20")}`;
+
+        const phone = "1234567890"; // replace with real WhatsApp number if sending to self
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+        window.open(url, "_blank");
+      });
+
+      // WhatsApp itinerary builder button
+      document
+        .getElementById("whatsapp-belfast")
+        .addEventListener("click", () => {
+          const vibe = document.getElementById("vibe-b").value;
+          const people = document.getElementById("people-b").value;
+          const dates = document.getElementById("dates-b").value;
+          const picks = Array.from(savedSet);
+          let msg = `Hi! I'd love a custom Belfast itinerary for today.%0A`;
+          if (picks.length) {
+            msg += `Saved spots:\n`;
+            picks.forEach((p, i) => {
+              msg += `${i + 1}. ${p}%0A`;
+            });
+          }
+          msg += `Vibe: ${vibe}%0AGroup size: ${people}%0A`;
+          if (dates.trim()) msg += `Dates: ${dates}%0A`;
+          msg += `Please help me plan something memorable!`;
+
+          const phone = "917999465459"; 
+          const url = `https://wa.me/${phone}?text=${msg}`;
+          window.open(url, "_blank");
+        });
+
+      // Highlight mini-nav based on scroll
+      const sections = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll(".mini-nav a");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((ent) => {
+            const id = ent.target.id;
+            const link = Array.from(navLinks).find((a) =>
+              a.getAttribute("href") === `#${id}`
+            );
+            if (ent.isIntersecting) {
+              navLinks.forEach((a) => a.classList.remove("active"));
+              link?.classList.add("active");
+            }
+          });
+        },
+        { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+      );
+      sections.forEach((sec) => observer.observe(sec));
+    </script>
+  </body>
+</html>

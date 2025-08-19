@@ -1,0 +1,1205 @@
+---
+title: "Vienna"
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vienna · Natsu & Kasii</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fonts: Viennese blend of classical and modern -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f4f1ed;
+        --card: #ffffff;
+        --text: #2e2a33;
+        --muted: #7a6f85;
+        --accent: #314a5f;
+        --accent2: #d4b483;
+        --radius: 16px;
+        --shadow: 0 38px 100px -15px rgba(49,74,95,0.22);
+        --transition: 0.35s cubic-bezier(.3,.1,.25,1);
+        --heading: "Playfair Display", serif;
+        --body: "Work Sans", system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+        --quote: "Great Vibes", cursive;
+      }
+
+      * { box-sizing:border-box; }
+
+      body {
+        margin: 0;
+        font-family: var(--body);
+        background: var(--bg);
+        color: var(--text);
+        line-height:1.55;
+        scroll-behavior: smooth;
+        position: relative;
+        min-height:100vh;
+      }
+
+      /* Vienna skyline blurred background */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: url('/images/vienna-blur.jpg') center/cover no-repeat fixed;
+        filter: blur(16px) brightness(1.05);
+        opacity: 0.13;
+        z-index: 0;
+        pointer-events: none;
+        mix-blend-mode: normal;
+      }
+
+      a { color: var(--accent); text-decoration:none; }
+      a:hover { text-decoration: underline; }
+
+      .container {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 1.5rem 1rem 5rem;
+        position: relative;
+        z-index:1;
+      }
+
+      .back-btn {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        background: rgba(255,255,255,0.9);
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight:600;
+        box-shadow: 0 18px 50px -10px rgba(49,74,95,0.2);
+        backdrop-filter: blur(6px);
+        z-index:1001;
+      }
+      .back-btn:hover { background:#fff; }
+
+      .mini-nav {
+        display:flex;
+        gap:1rem;
+        flex-wrap:wrap;
+        justify-content:center;
+        margin-bottom:1rem;
+        position:sticky;
+        top:10px;
+        z-index:100;
+        background: rgba(244,241,237,0.95);
+        padding:8px 12px;
+        border-radius: 12px;
+        box-shadow: 0 12px 40px -10px rgba(49,74,95,0.15);
+        font-size:0.9rem;
+      }
+      .mini-nav a {
+        padding:6px 14px;
+        border-radius:8px;
+        font-weight:600;
+        position:relative;
+        color: var(--text);
+        transition: var(--transition);
+      }
+      .mini-nav a.active,
+      .mini-nav a:hover {
+        background: var(--accent);
+        color:#fff;
+      }
+
+      .hero {
+        position: relative;
+        text-align: center;
+        padding: 2rem 0 1rem;
+        overflow: hidden;
+      }
+      .hero h1 {
+        font-family: var(--heading);
+        font-size: 3.8rem;
+        margin: 0;
+        color: var(--accent);
+        position: relative;
+        z-index:2;
+      }
+      .subtitle {
+        margin: 8px auto 12px;
+        max-width: 700px;
+        font-size: 1.1rem;
+        color: var(--muted);
+        position: relative;
+        z-index:2;
+      }
+      .quote {
+        font-family: var(--quote);
+        font-size: 1.1rem;
+        margin: 10px auto 6px;
+        max-width: 700px;
+        position: relative;
+        color: #4f445f;
+      }
+      .quote small {
+        display:block;
+        margin-top:4px;
+        font-size:0.65rem;
+        font-weight:600;
+        color: #7f758a;
+        font-family: var(--body);
+      }
+
+      /* Ambient subtle baroque shimmer */
+      .ambient {
+        pointer-events:none;
+        position:absolute;
+        inset:0;
+        z-index:1;
+        overflow:hidden;
+      }
+      .swirl {
+        position:absolute;
+        width: 120px;
+        height:120px;
+        background: radial-gradient(circle at 40% 40%, rgba(212,180,131,0.35), transparent 70%);
+        border-radius:50%;
+        filter: blur(30px);
+        mix-blend-mode: screen;
+        animation: swirl 22s ease-in-out infinite;
+        opacity:0.6;
+      }
+      @keyframes swirl {
+        0% { transform: translate(0,0) scale(1); }
+        50% { transform: translate(-20px,-25px) scale(1.05); }
+        100% { transform: translate(0,0) scale(1); }
+      }
+
+      .section {
+        margin: 3.5rem 0;
+        position: relative;
+      }
+      .section h2 {
+        font-family: var(--heading);
+        font-size:2.6rem;
+        margin-bottom:6px;
+        display:inline-block;
+        position: relative;
+      }
+      .section h2::after {
+        content:"";
+        display:block;
+        height:4px;
+        width:60px;
+        background: var(--accent);
+        border-radius:2px;
+        margin-top:6px;
+      }
+      .section .desc {
+        margin:8px 0 18px;
+        max-width:820px;
+        color: var(--muted);
+      }
+
+      .grid { display:grid; gap:1.25rem; }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding:1.3rem 1.55rem;
+        position:relative;
+        overflow:hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        display:flex;
+        flex-direction:column;
+        min-height:170px;
+        opacity:0;
+        transform: translateY(15px);
+      }
+      .card.visible { opacity:1; transform: translateY(0); }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 45px 110px -15px rgba(49,74,95,0.35);
+      }
+      .card h3 {
+        margin:0 0 6px;
+        font-family: var(--heading);
+        font-size:1.4rem;
+      }
+      .card p { margin:0; font-size:0.95rem; color:#4f445f; flex:1; }
+      .label {
+        display:inline-block;
+        background: var(--accent2);
+        color:#4b3f5f;
+        padding:4px 10px;
+        border-radius:999px;
+        font-size:0.6rem;
+        font-weight:600;
+        margin-bottom:6px;
+      }
+
+      .pill-list {
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap;
+        margin:12px 0 6px;
+      }
+      .pill {
+        background: var(--accent);
+        color:white;
+        padding:10px 18px;
+        border-radius:999px;
+        font-weight:600;
+        font-size:0.85rem;
+      }
+
+      /* Flip postcards */
+      .postcards {
+        display:flex;
+        gap:18px;
+        flex-wrap:wrap;
+        margin:2rem 0 1rem;
+        justify-content:center;
+      }
+      .flip-card {
+        background: transparent;
+        width: 300px;
+        height: 200px;
+        perspective: 1000px;
+        position: relative;
+      }
+      .flip-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        border-radius: 14px;
+      }
+      .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+      .flip-front,
+      .flip-back {
+        position: absolute;
+        width:100%;
+        height:100%;
+        backface-visibility: hidden;
+        border-radius:14px;
+        overflow:hidden;
+        box-shadow: 0 28px 60px -10px rgba(0,0,0,0.08);
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-end;
+        padding:14px;
+        font-size:0.85rem;
+      }
+      .flip-front img {
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit: cover;
+        filter: brightness(1);
+      }
+      .flip-front .overlay {
+        position: relative;
+        z-index:2;
+        background: rgba(0,0,0,0.2);
+        padding:8px 12px;
+        border-radius:10px;
+        color:#fff;
+        backdrop-filter: blur(4px);
+      }
+      .flip-back {
+        background: var(--card);
+        transform: rotateY(180deg);
+        padding:18px;
+        display:flex;
+        flex-direction:column;
+      }
+      .flip-back .title {
+        margin:0;
+        font-family: var(--heading);
+        font-size:1rem;
+      }
+      .flip-back .note {
+        margin:6px 0 0;
+        font-size:0.75rem;
+        flex:1;
+        color:#4f445f;
+      }
+
+      /* Filters */
+      .todo-filters {
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+        margin:10px 0 16px;
+      }
+      .todo-filters button {
+        background: rgba(255,255,255,0.15);
+        border:1px solid rgba(49,74,95,0.5);
+        padding:8px 16px;
+        border-radius:999px;
+        cursor:pointer;
+        color: var(--text);
+        font-weight:600;
+        transition: var(--transition);
+        backdrop-filter: blur(6px);
+      }
+      .todo-filters button.active {
+        background: var(--accent);
+        color:#fff;
+        border-color: var(--accent);
+      }
+      .todo-grid {
+        display:grid;
+        gap:1.25rem;
+        grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      }
+      .todo-card {
+        position:relative;
+        background: var(--card);
+        border-radius: var(--radius);
+        padding:1.25rem 1.5rem;
+        box-shadow: var(--shadow);
+        display:flex;
+        flex-direction:column;
+        transition: var(--transition);
+        min-height:170px;
+        opacity:0;
+        transform: translateY(15px);
+      }
+      .todo-card.visible { opacity:1; transform:translateY(0); }
+      .todo-card:hover { transform: translateY(-3px); }
+      .todo-card h3 { margin:0 0 6px; font-family: var(--heading); font-size:1.2rem; }
+      .todo-card small { margin-top:auto; font-size:0.65rem; opacity:.75; }
+
+      .save-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(255,255,255,0.95);
+        border-radius:50%;
+        width:32px;
+        height:32px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        cursor:pointer;
+        border:1px solid rgba(49,74,95,0.4);
+        transition: var(--transition);
+        padding:0;
+      }
+      .save-btn svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--accent);
+        fill: none;
+        transition: var(--transition);
+      }
+      .save-btn.saved {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+      .save-btn.saved svg {
+        stroke: white;
+        fill: white;
+      }
+
+      /* Itinerary toolbar */
+      .itinerary-toolbar {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #fff;
+        border-radius: 14px;
+        padding: 14px 18px;
+        box-shadow: 0 40px 100px -10px rgba(49,74,95,0.3);
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        font-size: 0.85rem;
+        z-index: 1200;
+        max-width: 380px;
+        flex-wrap: wrap;
+        border:1px solid rgba(49,74,95,0.3);
+      }
+      .saved-list {
+        display:flex;
+        flex-wrap:wrap;
+        gap:6px;
+        margin-bottom:4px;
+      }
+      .saved-pill {
+        background: rgba(49,74,95,0.1);
+        padding: 4px 10px;
+        border-radius:999px;
+        font-size:0.6rem;
+        display:flex;
+        align-items:center;
+        gap:4px;
+      }
+      .itinerary-actions {
+        display:flex;
+        gap:8px;
+        flex-wrap:wrap;
+      }
+      .itinerary-actions button {
+        background: var(--accent);
+        border:none;
+        color:white;
+        padding:6px 12px;
+        border-radius:999px;
+        cursor:pointer;
+        font-size:0.7rem;
+        font-weight:600;
+        transition: var(--transition);
+      }
+      .itinerary-actions button.secondary {
+        background: #666;
+      }
+      @keyframes pill-bounce {
+        0% { transform: scale(1); }
+        30% { transform: scale(1.15); }
+        60% { transform: scale(0.95); }
+        100% { transform: scale(1); }
+      }
+      .saved-pill.bounce { animation: pill-bounce 0.6s ease; }
+
+      .memory {
+        display:grid;
+        gap:24px;
+        grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+        margin:1rem 0 2rem;
+      }
+      .memory-text {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding:1.5rem;
+        position: relative;
+        box-shadow: var(--shadow);
+      }
+      .memory-text h3 {
+        margin-top:0;
+        font-family: var(--heading);
+        font-size:1.6rem;
+      }
+      .memory-text p {
+        margin:0.5rem 0 0;
+        font-size:0.95rem;
+      }
+
+      .itinerary-box {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding:1.5rem 1.75rem;
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        box-shadow: var(--shadow);
+        position:relative;
+      }
+      .itinerary-box h2 {
+        margin:0;
+        font-family: var(--heading);
+        font-size:2rem;
+      }
+      .field {
+        flex:1;
+        min-width:140px;
+        display:flex;
+        flex-direction:column;
+      }
+      .field label {
+        font-size:0.65rem;
+        font-weight:600;
+        margin-bottom:4px;
+        text-transform:uppercase;
+        letter-spacing:0.8px;
+        color:#666;
+      }
+      .field select,
+      .field input {
+        padding:10px 12px;
+        border-radius:8px;
+        border:1px solid #ddd;
+        font-size:0.95rem;
+        outline:none;
+      }
+      .btn {
+        background: var(--accent);
+        color:white;
+        border:none;
+        padding:12px 18px;
+        border-radius:999px;
+        cursor:pointer;
+        font-weight:600;
+        font-size:1rem;
+        transition: var(--transition);
+      }
+      .btn:hover { filter:brightness(1.05); }
+
+      @media (max-width:960px) {
+        .grid { grid-template-columns:1fr; }
+        .memory { grid-template-columns:1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="back-btn" href="/">← Back</a>
+
+    <div class="container">
+      <!-- Mini TOC -->
+      <div class="mini-nav" aria-label="section navigation">
+        <a href="#best-time" data-target="best-time">Best Time</a>
+        <a href="#dont-miss" data-target="dont-miss">Don't Miss</a>
+        <a href="#postcards" data-target="postcards">Postcards</a>
+        <a href="#memory" data-target="memory">Vienna Memory</a>
+        <a href="#things-to-do" data-target="things-to-do">Things to Do</a>
+        <a href="#best-views" data-target="best-views">Best Views</a>
+        <a href="#cafes" data-target="cafes">Aesthetic Cafés</a>
+        <a href="#nightlife" data-target="nightlife">Nightlife</a>
+        <a href="#offbeat" data-target="offbeat">Offbeat</a>
+        <a href="#itinerary" data-target="itinerary">Custom Itinerary</a>
+      </div>
+
+      <!-- Hero / Intro -->
+      <section class="hero" id="hero">
+        <div class="ambient" aria-hidden="true">
+          <div class="swirl" style="top:8%; left:18%; animation-delay:0s;"></div>
+          <div class="swirl" style="top:60%; left:70%; animation-delay:4s;"></div>
+          <div class="swirl" style="top:75%; left:35%; animation-delay:7s;"></div>
+        </div>
+
+        <h1>Vienna</h1>
+        <div class="subtitle">
+          A measured waltz of tradition and quiet reinvention—coffee rituals, palace echoes, and
+          streets that hum with history yet feel intimate.
+        </div>
+        <div class="quote">
+          “Vienna is the kind of city where even silence moves with grace.” <small>— Local whisper</small>
+        </div>
+        <div class="quote">
+          “Every corner here has a score; you just need to listen.” <small>— Ayushi</small>
+        </div>
+      </section>
+
+      <!-- Best Time to Visit -->
+      <section class="section" id="best-time">
+        <h2>Best Time to Visit</h2>
+        <div class="desc">
+          Vienna wears every season like a different composition: spring brings blooming gardens
+          and open terraces, summer fills courtyards with music, autumn softens light over baroque
+          rooftops, and winter wraps the city in warm candlelit cafes. There’s no single “right”
+          time, but if it’s your first visit, late spring (May–June) or early autumn (September)
+          offers mild weather, fewer crowds, and a sense of the city unfolding at a gentle tempo.
+        </div>
+        <div class="card" style="max-width:850px; margin:0 auto; display:flex; gap:20px; flex-wrap:wrap;">
+          <div style="flex:1; min-width:220px;">
+            <div class="label">Why First-Timers</div>
+            <h3 style="margin-top:0; font-size:1.35rem;">Balance & Warmth</h3>
+            <p>
+              Gardens are in bloom, open-air concerts tease the corners, and the streets feel lived-in
+              without overwhelming. It’s a sweet middle ground before the high summer tempo.
+            </p>
+          </div>
+          <div style="flex:1; min-width:220px;">
+            <div class="label">Seasonal Notes</div>
+            <h3 style="margin-top:0; font-size:1.35rem;">All moods live here</h3>
+            <p>
+              From winter’s soft glow in coffeehouses to spring’s fresh energy and autumn’s golden
+              reflection, Vienna rewards repeat visits with new layers.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Don't Miss -->
+      <section class="section" id="dont-miss">
+        <h2>Don't Miss</h2>
+        <div class="desc">
+          Anchors a local would start with—these are the places where Vienna’s character feels most
+          grounded yet alive.
+        </div>
+        <div class="pill-list">
+          <div class="pill">Schönbrunn Palace</div>
+          <div class="pill">St. Stephen's Cathedral</div>
+          <div class="pill">Belvedere</div>
+          <div class="pill">Prater</div>
+          <div class="pill">Vienna State Opera</div>
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:8px;">
+          <div class="card" data-id="schonbrunn">
+            <div class="save-btn" aria-label="save Schönbrunn Palace">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <div class="label">Imperial</div>
+            <h3>Schönbrunn Palace</h3>
+            <p>
+              Grand gardens and gilded rooms—wander the estate early to feel the history settle in
+              quiet before crowds arrive.
+            </p>
+          </div>
+          <div class="card" data-id="st-stephens">
+            <div class="save-btn" aria-label="save St. Stephen's Cathedral">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <div class="label">Spiritual</div>
+            <h3>St. Stephen's Cathedral</h3>
+            <p>
+              Gothic spires and intricate tilework—climb the tower for a pulse of the city from above
+              and feel its heartbeat below.
+            </p>
+          </div>
+          <div class="card" data-id="belvedere">
+            <div class="save-btn" aria-label="save Belvedere">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <div class="label">Art & Garden</div>
+            <h3>Belvedere</h3>
+            <p>
+              Baroque elegance and stately views—home to Austrian masterpieces, its gardens frame the
+              city in symmetry.
+            </p>
+          </div>
+          <div class="card" data-id="prater">
+            <div class="save-btn" aria-label="save Prater">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <div class="label">Playful</div>
+            <h3>Prater</h3>
+            <p>
+              The vintage giant wheel and green expanse—ride early or late to feel the city's playful,
+              lightly nostalgic energy.
+            </p>
+          </div>
+          <div class="card" data-id="state-opera">
+            <div class="save-btn" aria-label="save Vienna State Opera">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <div class="label">Cultural</div>
+            <h3>Vienna State Opera</h3>
+            <p>
+              Opulent and timeless—catch a performance or take the guided tour to feel the city's
+              artistic pedigree.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Postcards -->
+      <section class="section" id="postcards">
+        <h2>Postcards</h2>
+        <div class="desc">
+          Glimpses from our Vienna wanderings—small, curated moments that didn’t feel like tourist
+          stops but became the heartbeat of the trip.
+        </div>
+        <div class="postcards">
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/vienna-danube-dusk.jpg" alt="Danube Dusk" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Danube Dusk</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">
+                    Light melting into water, distant music from a riverside café—soft and lingering.
+                  </p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="title">Danube Dusk</div>
+                <div class="note">
+                  We sat by the water with pastries, watching boats glide—Vienna felt both calm and
+                  quietly alive. —Purvi
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/vienna-cafe-mozart.jpg" alt="Café Mozart" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Café Mozart Pause</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">
+                    Espresso, whispers of old composers, and a window view of cobbled life.
+                  </p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="title">Café Mozart Pause</div>
+                <div class="note">
+                  Time slowed as we shared strudel—the city’s elegance felt like gentle accompaniment.
+                  —Ayushi
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vienna Memory -->
+      <section class="section" id="memory">
+        <h2>Vienna Memory</h2>
+        <div class="desc">
+          Unplanned layers—late night music in a courtyard, the glow of candlelight in a wine bar,
+          and the feeling of drifting without map but with curiosity.
+        </div>
+        <div class="memory">
+          <div class="flip-card" style="max-width:320px;">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/vienna-courtyard-concert.jpg" alt="Courtyard Concert" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Courtyard Concert</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">
+                    Strings echoing between old walls as twilight deepened—unexpected harmony.
+                  </p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="title">Courtyard Concert</div>
+                <div class="note">
+                  We wandered in and found a tiny ensemble playing Haydn—Vienna gifted sound without
+                  asking. —Purvi
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="memory-text">
+            <h3>Wine & Stories</h3>
+            <p>
+              An off-hour detour led to a basement heuriger where the owner poured wine and
+              recounted family lore. The best itineraries weren’t the planned ones.
+            </p>
+            <p style="margin-top:8px; font-style:italic;">
+              “The city whispers its secrets when you pause.” — Ayushi
+            </p>
+          </div>
+
+          <div class="flip-card" style="max-width:320px;">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/vienna-midnight-walk.jpg" alt="Midnight Walk" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Midnight Walk</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">
+                    Streetlamps casting golden pools; the city quietly humming like a soft waltz.
+                  </p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="title">Midnight Walk</div>
+                <div class="note">
+                  Without plan, we drifted through empty squares—Vienna felt like a secret told just
+                  to us. —Purvi & Ayushi
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Things to Do -->
+      <section class="section" id="things-to-do">
+        <h2>Things to Do</h2>
+        <div class="desc">
+          Local-tested layers—begin with the landmarks, then meander into the idiosyncratic corners
+          that make Vienna feel personal. Everything here feeds into a well-curated Vienna itinerary
+          (free for you).
+        </div>
+
+        <div class="todo-filters" aria-label="filters for things to do">
+          <button data-filter="all" class="active">All</button>
+          <button data-filter="must">Must Visit</button>
+          <button data-filter="views">Best Views</button>
+          <button data-filter="cafes">Cafés</button>
+          <button data-filter="nightlife">Nightlife</button>
+          <button data-filter="offbeat">Offbeat</button>
+        </div>
+
+        <div class="todo-grid">
+          <!-- Must Visit -->
+          <div class="todo-card" data-category="must" data-id="schonbrunn">
+            <div class="save-btn" aria-label="save Schönbrunn Palace">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Schönbrunn Palace</h3>
+            <p>Imperial gardens and quiet rooms—feel the legacy before the crowds arrive.</p>
+            <small>Historical grandeur</small>
+          </div>
+          <div class="todo-card" data-category="must" data-id="st-stephens">
+            <div class="save-btn" aria-label="save St. Stephen's Cathedral">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>St. Stephen's Cathedral</h3>
+            <p>Climb for the city’s pulse; feel the mix of reverence and everyday life below.</p>
+            <small>Iconic</small>
+          </div>
+          <div class="todo-card" data-category="must" data-id="belvedere">
+            <div class="save-btn" aria-label="save Belvedere">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Belvedere</h3>
+            <p>Baroque art and garden symmetry—classic Austrian elegance in frame.</p>
+            <small>Art & view</small>
+          </div>
+
+          <!-- Best Views -->
+          <div class="todo-card" data-category="views" data-id="kahlenberg">
+            <div class="save-btn" aria-label="save Kahlenberg">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Kahlenberg</h3>
+            <p>Overlook the city and vineyards—morning light and panoramic calm.</p>
+            <small>Panorama</small>
+          </div>
+          <div class="todo-card" data-category="views" data-id="donauturm">
+            <div class="save-btn" aria-label="save Danube Tower">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Donauturm</h3>
+            <p>Elevated city sweep—the river, spires, and distant hills all in gentle alignment.</p>
+            <small>High vantage</small>
+          </div>
+
+          <!-- Aesthetic Cafés -->
+          <div class="todo-card" data-category="cafes" data-id="cafe-central">
+            <div class="save-btn" aria-label="save Café Central">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Café Central</h3>
+            <p>Historic salon vibes—sipping coffee feels like reading with ghosts of writers nearby.</p>
+            <small>Classic & refined</small>
+          </div>
+          <div class="todo-card" data-category="cafes" data-id="demel">
+            <div class="save-btn" aria-label="save Demel">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Demel</h3>
+            <p>Pastry-window theater—order something delicate and let the sugar slow time.</p>
+            <small>Sweet tradition</small>
+          </div>
+
+          <!-- Nightlife -->
+          <div class="todo-card" data-category="nightlife" data-id="grelle-forelle">
+            <div class="save-btn" aria-label="save Grelle Forelle">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Grelle Forelle</h3>
+            <p>Electronic pulses on the canal—edgy and curated, locals drift in after midnight.</p>
+            <small>Underground</small>
+          </div>
+          <div class="todo-card" data-category="nightlife" data-id="jazzland">
+            <div class="save-btn" aria-label="save Jazzland">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Jazzland</h3>
+            <p>Warm basement jazz—intimate rhythms that feel like a secret handshake with the city.</p>
+            <small>Classic nightlife</small>
+          </div>
+
+          <!-- Offbeat -->
+          <div class="todo-card" data-category="offbeat" data-id="hundertwasserhaus">
+            <div class="save-btn" aria-label="save Hundertwasserhaus">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Hundertwasserhaus</h3>
+            <p>Colorful, organic architecture that defies straight lines—playful and unexpected.</p>
+            <small>Architectural quirk</small>
+          </div>
+          <div class="todo-card" data-category="offbeat" data-id="zentralfriedhof">
+            <div class="save-btn" aria-label="save Zentralfriedhof">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Zentralfriedhof</h3>
+            <p>Historic cemetery where composers rest—quiet reflection and unexpected strolls among monuments.</p>
+            <small>Offbeat calm</small>
+          </div>
+          <div class="todo-card" data-category="offbeat" data-id="museum-of-illusions">
+            <div class="save-btn" aria-label="save Museum of Illusions">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Museum of Illusions</h3>
+            <p>Playful perception twists—simple moments become puzzling and memorable.</p>
+            <small>Curious</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Itinerary -->
+      <section class="section" id="itinerary">
+        <h2>Your Custom Vienna Itinerary</h2>
+        <div class="desc">
+          Handcrafted from what you’ve saved—“This is your Vienna mini-itinerary for today,”
+          numbered and recommended by Natsu & Kasii. Well-curated, personalized, and completely
+          free. Pick your vibe, group size, and dates; we’ll package it for you via WhatsApp.
+        </div>
+        <div class="itinerary-box">
+          <div style="display:flex; gap:18px; flex-wrap:wrap;">
+            <div class="field">
+              <label for="vibe">Vibe</label>
+              <select id="vibe">
+                <option value="classic">Classic</option>
+                <option value="art">Artful</option>
+                <option value="cafe">Café Leisure</option>
+                <option value="night">Night Pulse</option>
+                <option value="mixed">Mixed</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="people">Group Size</label>
+              <input type="number" id="people" min="1" value="2" />
+            </div>
+            <div class="field">
+              <label for="dates">Dates (optional)</label>
+              <input type="text" id="dates" placeholder="e.g., 12–16 May" />
+            </div>
+          </div>
+          <div>
+            <p style="margin:6px 0;">
+              We’ll auto-generate a tidy numbered itinerary based on what you’ve saved and the vibe
+              you choose. Shareable, light, and free—no signup needed.
+            </p>
+            <button class="btn" id="whatsapp-vienna">Send on WhatsApp</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Toolbar -->
+    <div id="itinerary-toolbar" class="itinerary-toolbar" style="display:none;">
+      <div style="flex:1; min-width:140px;">
+        <h4>Your Vienna mini-itinerary</h4>
+        <div id="itinerary-summary" style="margin-bottom:6px; font-size:0.9rem; line-height:1.2;"></div>
+        <div class="saved-list" id="saved-list"></div>
+        <div style="font-size:0.6rem; color:#555;">
+          Build, copy, or share what you’ve saved.
+        </div>
+      </div>
+      <div class="itinerary-actions">
+        <button id="copy-link">Copy Link</button>
+        <button id="share-whatsapp">Share on WhatsApp</button>
+        <button id="share-email" class="secondary">Email</button>
+        <button id="clear-itinerary" class="secondary">Clear</button>
+      </div>
+    </div>
+
+    <script>
+      const DISPLAY_NAMES = {
+        "schonbrunn": "Schönbrunn Palace",
+        "st-stephens": "St. Stephen's Cathedral",
+        "belvedere": "Belvedere",
+        "prater": "Prater",
+        "state-opera": "Vienna State Opera",
+        "kahlenberg": "Kahlenberg",
+        "donauturm": "Donauturm",
+        "cafe-central": "Café Central",
+        "demel": "Demel",
+        "grelle-forelle": "Grelle Forelle",
+        "jazzland": "Jazzland",
+        "hundertwasserhaus": "Hundertwasserhaus",
+        "zentralfriedhof": "Zentralfriedhof",
+        "museum-of-illusions": "Museum of Illusions"
+      };
+      function getDisplayName(id) {
+        return DISPLAY_NAMES[id] || id.replace(/[-_]/g, " ");
+      }
+
+      const STORAGE_KEY = "vienna-saved-items";
+      let previousSaved = [];
+
+      function getSaved() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch { return []; }
+      }
+      function setSaved(arr) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+        refreshToolbar();
+      }
+      function toggleSaved(id) {
+        let saved = getSaved();
+        if (saved.includes(id)) saved = saved.filter(s => s !== id);
+        else saved.push(id);
+        setSaved(saved);
+        updateCardState();
+      }
+      function updateCardState() {
+        const saved = getSaved();
+        document.querySelectorAll(".save-btn").forEach(btn => {
+          const parent = btn.closest("[data-id]");
+          if (!parent) return;
+          const id = parent.dataset.id;
+          if (saved.includes(id)) btn.classList.add("saved");
+          else btn.classList.remove("saved");
+        });
+      }
+      function updateSummary() {
+        const summaryEl = document.getElementById("itinerary-summary");
+        const saved = getSaved();
+        if (!saved.length) {
+          summaryEl.textContent = "";
+          return;
+        }
+        const names = saved.map((id, idx) => `${idx + 1}. ${getDisplayName(id)}`);
+        const baseUrl = `${window.location.origin}${window.location.pathname}`;
+        const param = encodeURIComponent(saved.join(","));
+        const shareLink = `${baseUrl}?saved=${param}`;
+        summaryEl.innerHTML = `
+          <strong>Today's Vienna itinerary:</strong> ${names.join(" · ")}.<br/>
+          Recommended by <em>Natsu & Kasii</em>. 
+          <a href="${shareLink}" style="color: var(--accent); text-decoration:underline;">View / share this</a>
+        `;
+      }
+      function refreshToolbar() {
+        const toolbar = document.getElementById("itinerary-toolbar");
+        const saved = getSaved();
+        const savedList = document.getElementById("saved-list");
+        savedList.innerHTML = "";
+        if (!saved.length) {
+          toolbar.style.display = "none";
+          previousSaved = [];
+          updateSummary();
+          return;
+        }
+        toolbar.style.display = "flex";
+        const newlyAdded = saved.filter(id => !previousSaved.includes(id));
+        saved.forEach(id => {
+          const pill = document.createElement("div");
+          pill.className = "saved-pill";
+          pill.textContent = getDisplayName(id);
+          const x = document.createElement("span");
+          x.style.marginLeft = "6px";
+          x.style.cursor = "pointer";
+          x.textContent = "×";
+          x.addEventListener("click", () => toggleSaved(id));
+          pill.appendChild(x);
+          if (newlyAdded.includes(id)) {
+            pill.classList.add("bounce");
+            pill.addEventListener("animationend", () => pill.classList.remove("bounce"));
+          }
+          savedList.appendChild(pill);
+        });
+        previousSaved = [...saved];
+        updateSummary();
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // progressive reveal
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll(".card, .todo-card").forEach(el => observer.observe(el));
+
+        // mini-TOC highlight
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const id = entry.target.id;
+            const link = document.querySelector(`.mini-nav a[data-target="${id}"]`);
+            if (link && entry.isIntersecting) {
+              document.querySelectorAll(".mini-nav a").forEach(a => a.classList.remove("active"));
+              link.classList.add("active");
+            }
+          });
+        }, { rootMargin: "-40% 0px -50% 0px" });
+        document.querySelectorAll(".section").forEach(s => sectionObserver.observe(s));
+
+        // save listeners
+        document.querySelectorAll(".save-btn").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const card = btn.closest("[data-id]");
+            if (!card) return;
+            toggleSaved(card.dataset.id);
+          });
+        });
+
+        // filters
+        document.querySelectorAll(".todo-filters button").forEach(b => {
+          b.addEventListener("click", () => {
+            document.querySelectorAll(".todo-filters button").forEach(x => x.classList.remove("active"));
+            b.classList.add("active");
+            const filter = b.dataset.filter;
+            document.querySelectorAll(".todo-card").forEach(card => {
+              if (filter === "all" || card.dataset.category === filter) card.style.display="flex";
+              else card.style.display="none";
+            });
+          });
+        });
+
+        // restore saved from URL
+        const params = new URLSearchParams(window.location.search);
+        if (params.has("saved")) {
+          try {
+            const incoming = decodeURIComponent(params.get("saved") || "");
+            const list = incoming.split(",").filter(Boolean);
+            setSaved(Array.from(new Set([...getSaved(), ...list])));
+          } catch {}
+        } else {
+          refreshToolbar();
+        }
+        updateCardState();
+      });
+
+      // share / copy
+      document.getElementById("copy-link").addEventListener("click", () => {
+        const saved = getSaved();
+        if (!saved.length) return;
+        const param = encodeURIComponent(saved.join(","));
+        const url = `${window.location.origin}${window.location.pathname}?saved=${param}`;
+        const names = saved.map((id, idx) => `${idx+1}. ${getDisplayName(id)}`).join("\n");
+        const text = `Today's Vienna itinerary:\n${names}\n\nRecommended by Natsu & Kasii\n${url}`;
+        navigator.clipboard.writeText(text);
+        alert("Itinerary copied!");
+      });
+      document.getElementById("share-whatsapp").addEventListener("click", () => {
+        const saved = getSaved();
+        if (!saved.length) return;
+        const baseUrl = `${window.location.origin}${window.location.pathname}`;
+        const param = encodeURIComponent(saved.join(","));
+        const shareLink = `${baseUrl}?saved=${param}`;
+        const names = saved.map((id, idx) => `${idx+1}. ${getDisplayName(id)}`).join("\n");
+        const summary = `My Vienna mini-itinerary:\n${names}\n\nRecommended by Natsu & Kasii\n${shareLink}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(summary)}`, "_blank");
+      });
+      document.getElementById("share-email").addEventListener("click", () => {
+        const saved = getSaved();
+        if (!saved.length) return;
+        const param = encodeURIComponent(saved.join(","));
+        const url = `${window.location.origin}${window.location.pathname}?saved=${param}`;
+        window.location.href = `mailto:?subject=My Vienna Mini-Itinerary&body=${encodeURIComponent("Here's what I saved:\n" + url)}`;
+      });
+      document.getElementById("clear-itinerary").addEventListener("click", () => {
+        localStorage.removeItem(STORAGE_KEY);
+        updateCardState();
+        refreshToolbar();
+      });
+
+      // WhatsApp custom itinerary
+      document.getElementById("whatsapp-vienna").addEventListener("click", () => {
+        const vibe = document.getElementById("vibe").value;
+        const people = document.getElementById("people").value;
+        const dates = document.getElementById("dates").value;
+        const saved = getSaved();
+        const namesList = saved.map((id, idx) => `${idx+1}. ${getDisplayName(id)}`).join("\n");
+        let msg = `This is your Vienna mini-itinerary for today:\n${namesList}\n\nVibe: ${vibe}\nGroup size: ${people}`;
+        if (dates.trim()) msg += `\nDates: ${dates}`;
+        msg += `\nRecommended by Natsu & Kashii.`;
+        const phone = "1234567890"; // replace with real number
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank");
+      });
+    </script>
+  </body>
+</html>

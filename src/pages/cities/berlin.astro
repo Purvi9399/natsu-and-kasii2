@@ -1,0 +1,1491 @@
+---
+title: "Berlin"
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Berlin · Natsu & Kashii</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@700&family=Karla:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+
+  :root {
+       --bg: #f9f5f2;
+       --card: #ffffff;
+       --text: #1f1e25;
+       --muted: #6f6b7b;
+       --accent: #d984aa;
+       --accent2: #f5c3d1;
+       --radius: 16px;
+       --shadow: 0 28px 80px -10px rgba(217, 132, 170, 0.25);
+       --transition: 0.35s cubic-bezier(.3,.1,.25,1);
+       --heading: "Elsie Swash Caps", serif;
+       --body: "Karla", system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+       --quote: "Dancing Script", cursive;
+     }
+
+     * { box-sizing:border-box; }
+
+     body {
+       margin: 0;
+       font-family: var(--body);
+       background: var(--bg);
+       color: var(--text);
+       line-height:1.55;
+       scroll-behavior: smooth;
+       position: relative;
+       min-height:100vh;
+     }
+
+     a { color: var(--accent); text-decoration:none; position: relative; }
+     a:hover { text-decoration: underline; }
+
+     .container {
+       max-width: 1080px;
+       margin: 0 auto;
+       padding: 1.5rem 1rem 5rem;
+     }
+
+
+
+
+      /* Back button */
+      .back-btn {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        background: rgba(255,255,255,0.9);
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight:600;
+        box-shadow: 0 18px 50px -10px rgba(217,132,170,0.2);
+        backdrop-filter: blur(8px);
+        z-index: 1001;
+      }
+      .back-btn:hover { background: #fff; }
+
+      /* Mini nav / TOC */
+      .mini-nav {
+        display:flex;
+        gap:1rem;
+        flex-wrap:wrap;
+        justify-content:center;
+        margin-bottom:1rem;
+        position:sticky;
+        top:0;
+        z-index:100;
+        background: rgba(249,245,242,0.95);
+        padding:8px 12px;
+        border-radius: 12px;
+        box-shadow: 0 12px 40px -10px rgba(217,132,170,0.15);
+        font-size:0.9rem;
+      }
+      .mini-nav a {
+        padding:6px 14px;
+        border-radius:8px;
+        font-weight:600;
+        position:relative;
+        color: var(--text);
+        transition: var(--transition);
+      }
+      .mini-nav a.active,
+      .mini-nav a:hover {
+        color: #fff;
+        background: var(--accent);
+      }
+
+      /* Hero with ambient */
+      .hero {
+        position: relative;
+        text-align: center;
+        padding: 2rem 0 3rem;
+        overflow: hidden;
+      }
+      .hero h1 {
+        font-family: var(--heading);
+        font-size: 3.8rem;
+        margin: 0;
+        color: var(--accent);
+        position: relative;
+        z-index: 2;
+      }
+      .subtitle {
+        margin: 8px auto 20px;
+        max-width: 720px;
+        font-size: 1.1rem;
+        color: var(--muted);
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Ambient overlay + floating bokeh */
+      .ambient {
+        pointer-events: none;
+        position: absolute;
+        inset: 0;
+        z-index:1;
+        overflow:hidden;
+      }
+      .grain {
+        position:absolute;
+        inset:0;
+        background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iODAwIiBmaWxsPSIjZmZmZmZmIj48L3JlY3Q+PC9zdmc+') repeat;
+        opacity:0.035;
+        mix-blend-mode:overlay;
+      }
+      .bokeh {
+        position:absolute;
+        width:100%;
+        height:100%;
+      }
+      .bokeh-circle {
+        position:absolute;
+        border-radius:50%;
+        background: rgba(255, 255, 255, 0.15);
+        filter: blur(24px);
+        pointer-events:none;
+        animation: float 15s ease-in-out infinite;
+        mix-blend-mode: screen;
+      }
+      @keyframes float {
+        0% { transform: translateY(0) scale(1); opacity:.4; }
+        50% { transform: translateY(-30px) scale(1.1); opacity:.2; }
+        100% { transform: translateY(0) scale(1); opacity:.4; }
+      }
+
+      .section {
+        margin: 3.5rem 0;
+        position: relative;
+      }
+      .section h2 {
+        font-family: var(--heading);
+        font-size: 2.6rem;
+        margin-bottom:6px;
+        display:inline-block;
+        position: relative;
+      }
+      .section h2::after {
+        content:"";
+        display:block;
+        height:4px;
+        width:60px;
+        background: var(--accent);
+        border-radius:2px;
+        margin-top:6px;
+      }
+      .section .desc {
+        margin:8px 0 18px;
+        max-width:800px;
+        color: var(--muted);
+      }
+
+      .grid {
+        display:grid;
+        gap:1.25rem;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding:1.3rem 1.55rem;
+        position:relative;
+        overflow:hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        display:flex;
+        flex-direction:column;
+        min-height:170px;
+        opacity:0;
+        transform: translateY(15px);
+      }
+      .card.visible {
+        opacity:1;
+        transform: translateY(0);
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 38px 100px -15px rgba(217,132,170,0.35);
+      }
+      .card h3 {
+        margin:0 0 6px;
+        font-family: var(--heading);
+        font-size:1.4rem;
+        color:#2d2d2d;
+      }
+      .card p { margin:0; font-size:0.95rem; color:#444; flex:1; }
+      .label {
+        display:inline-block;
+        background: var(--accent2);
+        color:#3f2f4f;
+        padding:4px 10px;
+        border-radius:999px;
+        font-size:0.6rem;
+        font-weight:600;
+        margin-bottom:6px;
+      }
+
+      .pill-list {
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap;
+        margin:12px 0 6px;
+      }
+      .pill {
+        background: var(--accent);
+        color:white;
+        padding:10px 18px;
+        border-radius:999px;
+        font-weight:600;
+        font-size:0.85rem;
+      }
+
+      /* Postcards (flip) */
+      .postcards {
+        display:flex;
+        gap:18px;
+        flex-wrap:wrap;
+        margin:2rem 0 1rem;
+        justify-content:center;
+      }
+      .flip-card {
+        background: transparent;
+        width: 300px;
+        height: 200px;
+        perspective: 1000px;
+        position: relative;
+      }
+      .flip-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        border-radius: 14px;
+      }
+      .flip-card:hover .flip-inner {
+        transform: rotateY(180deg);
+      }
+      .flip-front,
+      .flip-back {
+        position: absolute;
+        width:100%;
+        height:100%;
+        backface-visibility: hidden;
+        border-radius:14px;
+        overflow:hidden;
+        box-shadow: 0 28px 60px -10px rgba(0,0,0,0.08);
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-end;
+        padding:14px;
+        font-size:0.85rem;
+      }
+      .flip-front img {
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit: cover;
+        filter: brightness(1);
+      }
+      .flip-front .overlay {
+        position: relative;
+        z-index:2;
+        background: rgba(0,0,0,0.2);
+        padding:8px 12px;
+        border-radius:10px;
+        color:#fff;
+        backdrop-filter: blur(4px);
+      }
+      .flip-back {
+        background: var(--card);
+        transform: rotateY(180deg);
+        padding:18px;
+        display:flex;
+        flex-direction:column;
+      }
+      .flip-back .title {
+        margin:0;
+        font-family: var(--heading);
+        font-size:1rem;
+      }
+      .flip-back .note {
+        margin:6px 0 0;
+        font-size:0.75rem;
+        flex:1;
+        color:#444;
+      }
+
+      /* Things to Do */
+      .todo-filters {
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+        margin:10px 0 16px;
+      }
+      .todo-filters button {
+        background: rgba(255,255,255,0.15);
+        border:1px solid rgba(217,132,170,0.5);
+        padding:8px 16px;
+        border-radius:999px;
+        cursor:pointer;
+        color: #2d2d2d;
+        font-weight:600;
+        transition: var(--transition);
+        backdrop-filter: blur(6px);
+      }
+      .todo-filters button.active {
+        background: var(--accent);
+        color:#fff;
+        border-color: var(--accent);
+      }
+      .todo-grid {
+        display:grid;
+        gap:1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      }
+      .todo-card {
+        position:relative;
+        background: var(--card);
+        border-radius: var(--radius);
+        padding:1.25rem 1.5rem;
+        box-shadow: var(--shadow);
+        display:flex;
+        flex-direction:column;
+        transition: var(--transition);
+        min-height:170px;
+        opacity:0;
+        transform: translateY(15px);
+      }
+      .todo-card.visible { opacity:1; transform:translateY(0); }
+      .todo-card:hover { transform: translateY(-3px); }
+      .todo-card h3 { margin:0 0 6px; font-family: var(--heading); font-size:1.2rem; }
+      .todo-card small { margin-top:auto; font-size:0.65rem; opacity:.75; }
+
+      /* Save/bookmark button */
+      .save-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(255,255,255,0.95);
+        border-radius:50%;
+        width:32px;
+        height:32px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        cursor:pointer;
+        border:1px solid rgba(217,132,170,0.4);
+        transition: var(--transition);
+        padding:0;
+      }
+      .save-btn svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--accent);
+        fill: none;
+        transition: var(--transition);
+      }
+      .save-btn.saved {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+      .save-btn.saved svg {
+        stroke: white;
+        fill: white;
+      }
+
+      /* Itinerary toolbar */
+      .itinerary-toolbar {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #fff;
+        border-radius: 14px;
+        padding: 14px 18px;
+        box-shadow: 0 40px 100px -10px rgba(217,132,170,0.3);
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        font-size: 0.85rem;
+        z-index: 1200;
+        max-width: 360px;
+        flex-wrap: wrap;
+        border:1px solid rgba(217,132,170,0.3);
+      }
+      .itinerary-toolbar h4 {
+        margin: 0 0 6px;
+        font-size: 1rem;
+      }
+      .saved-list {
+        display:flex;
+        flex-wrap:wrap;
+        gap:6px;
+        margin-bottom:4px;
+      }
+      .saved-pill {
+        background: rgba(217,132,170,0.1);
+        padding: 4px 10px;
+        border-radius:999px;
+        font-size:0.6rem;
+        display:flex;
+        align-items:center;
+        gap:4px;
+      }
+      .itinerary-actions {
+        display:flex;
+        gap:8px;
+        flex-wrap:wrap;
+      }
+      .itinerary-actions button {
+        background: var(--accent);
+        border:none;
+        color:white;
+        padding:6px 12px;
+        border-radius:999px;
+        cursor:pointer;
+        font-size:0.7rem;
+        font-weight:600;
+        transition: var(--transition);
+      }
+      .itinerary-actions button.secondary {
+        background: #666;
+      }
+
+      /* bounce for new pill */
+      @keyframes pill-bounce {
+        0% { transform: scale(1); }
+        30% { transform: scale(1.15); }
+        60% { transform: scale(0.95); }
+        100% { transform: scale(1); }
+      }
+      .saved-pill.bounce {
+        animation: pill-bounce 0.6s ease;
+      }
+
+      /* Berlin Memory snippet */
+      .memory {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+        margin: 1rem 0 2rem;
+      }
+      .memory-text {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        position: relative;
+        box-shadow: var(--shadow);
+      }
+      .memory-text h3 {
+        margin-top:0;
+        font-family: var(--heading);
+        font-size:1.6rem;
+      }
+      .memory-text p {
+        margin:0.5rem 0 0;
+        font-size:0.95rem;
+      }
+
+      /* Itinerary form */
+      .itinerary-box {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding:1.5rem 1.75rem;
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        box-shadow: var(--shadow);
+        position:relative;
+      }
+      .itinerary-box h2 {
+        margin:0;
+        font-family: var(--heading);
+        font-size:2rem;
+      }
+      .itinerary-fields {
+        display:flex;
+        gap:14px;
+        flex-wrap:wrap;
+      }
+      .field {
+        flex:1;
+        min-width:140px;
+        display:flex;
+        flex-direction:column;
+      }
+      .field label {
+        font-size:0.65rem;
+        font-weight:600;
+        margin-bottom:4px;
+        text-transform:uppercase;
+        letter-spacing:0.8px;
+        color:#666;
+      }
+      .field select,
+      .field input {
+        padding:10px 12px;
+        border-radius:8px;
+        border:1px solid #ddd;
+        font-size:0.95rem;
+        outline:none;
+      }
+      .btn {
+        background: var(--accent);
+        color: white;
+        border:none;
+        padding:12px 18px;
+        border-radius:999px;
+        cursor:pointer;
+        font-weight:600;
+        font-size:1rem;
+        transition: var(--transition);
+        margin-top:4px;
+      }
+      .btn:hover { filter: brightness(1.05); }
+
+      .section-separator {
+        margin:60px 0 30px;
+        height:1px;
+        background:#e7e5e2;
+      }
+
+      /* Responsive tweaks */
+      @media (max-width: 960px) {
+        .grid { grid-template-columns:1fr; }
+        .memory { grid-template-columns:1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- back -->
+    <a class="back-btn" href="/">← Back</a>
+
+    <div class="container">
+      <!-- Mini TOC -->
+      <div class="mini-nav" aria-label="section navigation">
+        <a href="#best-time" data-target="best-time">Best Time</a>
+        <a href="#dont-miss" data-target="dont-miss">Don't Miss</a>
+        <a href="#postcards" data-target="postcards">Postcards</a>
+        <a href="#memory" data-target="memory">Berlin Memory</a>
+        <a href="#things-to-do" data-target="things-to-do">Things to Do</a>
+        <a href="#best-views" data-target="best-views">Best Views</a>
+        <a href="#cafes" data-target="cafes">Aesthetic Cafes</a>
+        <a href="#nightlife" data-target="nightlife">Nightlife</a>
+        <a href="#offbeat" data-target="offbeat">Offbeat</a>
+        <a href="#itinerary" data-target="itinerary">Custom Itinerary</a>
+      </div>
+
+      <!-- Hero -->
+      <section class="hero" id="best-time">
+        <div class="ambient" aria-hidden="true">
+          <div class="grain"></div>
+          <div class="bokeh">
+            <div class="bokeh-circle" style="width:100px; height:100px; top:10%; left:15%; animation-delay:0s;"></div>
+            <div class="bokeh-circle" style="width:70px; height:70px; top:40%; left:80%; animation-delay:2s;"></div>
+            <div class="bokeh-circle" style="width:90px; height:90px; top:70%; left:30%; animation-delay:5s;"></div>
+            <div class="bokeh-circle" style="width:50px; height:50px; top:20%; left:60%; animation-delay:3s;"></div>
+          </div>
+        </div>
+
+        <h1>Berlin</h1>
+        <div class="subtitle">
+          Reinvention in wide streets, late light, and spontaneous nights. A city that tells stories
+          out loud and whispers in corners.
+        </div>
+        <div class="card" style="max-width:850px; margin:0 auto; display:flex; gap:20px; flex-wrap:wrap;">
+          <div style="flex:1; min-width:220px;">
+            <div class="label">Best Time to Visit</div>
+            <h3 style="margin-top:0; font-size:1.35rem;">Late spring to early autumn</h3>
+            <p>
+              Berlin wakes gently in the golden light of late spring, blooms with outdoor markets
+              in summer, and wraps itself in crisp creativity in early fall. Nights feel infinite
+              after the sun sets.
+            </p>
+          </div>
+          <div style="flex:1; min-width:220px;">
+            <div class="label">Quick Vibe</div>
+            <h3 style="margin-top:0; font-size:1.35rem;">Bold & Curious</h3>
+            <p>
+              Expect paradoxes: architectural grandeur beside street art, quiet museum corners
+              next to loud techno pulses. Berlin rewards exploration with layers.
+            </p>
+          </div>
+        </div>
+
+        <!-- Floating quotes -->
+        <div class="quotes" aria-label="vibe quotes">
+          <div class="quote">
+            “The city feels like a conversation between yesterday and tomorrow.” <small>— Purvi
+              </small>
+          </div>
+          <div class="quote" style="margin-top: 40px;">
+            “            “Berlin teaches you that silence and noise both have rhythm.” <small>— Traveler’s note</small>
+.” <small>— David Bowie </small>
+          </div>
+        </div>
+      </section>
+
+      <!-- Don't Miss -->
+      <section class="section" id="dont-miss">
+        <h2>Don't Miss</h2>
+        <div class="desc">
+          Core anchors that form your first impression—these emblematic stops define Berlin’s soul.
+        </div>
+        <div class="pill-list">
+          <div class="pill">Brandenburg Gate</div>
+          <div class="pill">Reichstag</div>
+          <div class="pill">East Side Gallery</div>
+          <div class="pill">Späti Culture</div>
+          <div class="pill">Tempelhofer Feld</div>
+        </div>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); margin-top:8px;">
+
+          <div class="card" data-id="brandenburg-gate">
+            <div class="save-btn" aria-label="save Brandenburg Gate"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Iconic</div>
+            <h3>Brandenburg Gate</h3>
+            <style>
+  .info {
+    max-width: 600px;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  .info p {
+    margin: 1.5em 0; 
+  }
+  .pro-tip {
+    background: rgba(255, 245, 250, 0.9);
+    padding: 0.75em 1em;
+    border-radius: 6px;
+    display: inline-block;
+  }
+</style>
+
+<div class="info">
+  <p style="font-size:1.1rem; margin-bottom:0.75em;"><strong></strong> The Brandenburg Gate is Berlin’s most iconic landmark, once a solemn symbol of division, now the city’s most photogenic peace treaty.</p>
+
+  <p style="margin-bottom:0.75em;"><strong>Fun Fact:</strong>  This is the gate where Napoleon marched through, where protesters gathered, and now where tourists now struggle to take selfies without someone’s head in the frame. </p>
+
+  <p style="margin-bottom:0.75em;"><strong>Our tip?</strong> Go at dawn. There’s something sacred about watching the sun rise/ sunset behind those neoclassical columns while the city is still half-asleep or just before the night tourists have arrived and it's quiet.</p>
+
+</div>
+          </div>
+          <div class="card" data-id="reichstag">
+            <div class="save-btn" aria-label="save Reichstag"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Historic</div>
+            <h3>Reichstag</h3>
+            <style>
+  .info {
+    max-width: 600px;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  .info p {
+    margin: 1.5em 0; 
+  }
+  .pro-tip {
+    background: rgba(255, 245, 250, 0.9);
+    padding: 0.75em 1em;
+    border-radius: 6px;
+    display: inline-block;
+  }
+</style>
+
+<div class="info">
+  <p style="font-size:1.1rem; margin-bottom:0.75em;"><strong></strong> The Reichstag is Germany’s historic parliament building and one of Berlin’s most powerful symbols</p>
+
+  <p style="margin-bottom:0.75em;"><strong>Fun Fact:</strong> The glass dome at the top of the Reichstag was designed to symbolize transparency in democracy; you can literally look down into the parliamentary chamber while politicians debate, meaning the people are always above the government.</p>
+
+  <p style="margin-bottom:0.75em;"><strong>Our tip?</strong> Visit it at night. The crowds thin out, the city lights come alive, and the dome glows like a lantern over Berlin. From the top, you’ll catch surreal nighttime views, from the sparkling Fernsehturm to the quiet curve of the Spree River.</p>
+
+  <p class="pro-tip"><strong>✨ Pro tip:</strong> You’ll need to register in advance (online or on-site) with a valid ID. The dome is open until midnight, with the last entry at 10 PM, perfect for a post-dinner stroll above the city.</p>
+</div>
+
+
+          </div>
+          <div class="card" data-id="east-side-gallery">
+            <div class="save-btn" aria-label="save East Side Gallery"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Art</div>
+            <h3>East Side Gallery</h3>
+                     <style>
+  .info {
+    max-width: 600px;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  .info p {
+    margin: 1.5em 0; 
+  }
+  .pro-tip {
+    background: rgba(255, 245, 250, 0.9);
+    padding: 0.75em 1em;
+    border-radius: 6px;
+    display: inline-block;
+  }
+</style>
+
+<div class="info">
+  <p style="font-size:1.1rem; margin-bottom:0.75em;"><strong></strong> The East Side Gallery is the longest remaining stretch of the Berlin Wall, now transformed into an open-air gallery of freedom, protest, and hope, where art quite literally broke through concrete.</p>
+
+  <p style="margin-bottom:0.75em;"><strong>Fun Fact:</strong> it's the longest open-air gallery in the world, featuring over 100 murals painted by artists from across the globe just after the Wall fell in 1989. Each piece is a snapshot of global optimism, rebellion, and unity in the face of division. No other place in Berlin holds the weight of its past and the color of its future so boldly</p>
+
+  <p style="margin-bottom:0.75em;"><strong>Our tip?</strong> If you're walking early in the morning, grab a coffee and croissant from nearby cafés like Milja & Schäfa or Silo Coffee. Time it right, and you can end your stroll at Oberbaumbrücke—where the river glows and you might hear a street musician playing beneath the arches.
+Us? We love walking past it late at night, beer in hand, sitting by the riverside while the city hums quietly behind us. P.S if you are sitting there right now, Ayushi's new office is right behind you </p>
+
+</div>
+        </div>
+
+
+          <div class="card" data-id="reichstag">
+            <div class="save-btn" aria-label="save Reichstag"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Iconic</div>
+            <h3>Späti Culture</h3>
+            <style>
+  .info {
+    max-width: 600px;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  .info p {
+    margin: 1.5em 0; 
+  }
+  .pro-tip {
+    background: rgba(255, 245, 250, 0.9);
+    padding: 0.75em 1em;
+    border-radius: 6px;
+    display: inline-block;
+  }
+</style>
+
+<div class="info">
+  <p style="font-size:1.1rem; margin-bottom:0.75em;"><strong></strong> Okay this isn't a "place" but a lifestyle. Grab a beer or Club-Mate from a Späti (late-night corner shop), sit by the canal or park, and just soak in Berlin's night feels. Need a beer at 2 AM? A lighter? Life advice from a stranger? The Späti’s got you. These little late-night kiosks are less “convenience store” and more community hubs with a fridge full of cheap beer.
+
+</p>
+
+  <p class="pro-tip"><strong>✨ Pro tip:</strong> Grab a Club-Mate or a Sterni, sit on the curb outside, and people-watch like a Berliner. Bonus points if you start a philosophical convo with a guy named Klaus.</p>
+</div>
+
+
+          </div>
+      </section>
+
+      <!-- Postcards -->
+      <section class="section" id="postcards">
+        <h2>Postcards</h2>
+        <div class="desc">
+          Little snapshots from our time in berlin, some bits and peices that stayed with us.
+        </div>
+        <div class="postcards">
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/berlin.png" alt="Golden Dome Mornings" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Golden Dome Mornings</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">The soft light over historic facades felt like a warm welcome.</p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <p class="title">Golden Dome Mornings</p>
+                <p class="note">We walked silent streets after sunrise. The city felt both quiet and expectant—like it had secrets to share slowly. —Purvi</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/edinburgh.png" alt="Graffiti & Echoes" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Graffiti & Echoes</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">Walls that talk, alleys that breathe—Berlin’s layers show themselves.</p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <p class="title">Graffiti & Echoes</p>
+                <p class="note">We got lost chasing murals. Every turn revealed a new story, someone’s doodle turning into a memory. —Ayushi</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/glasgow.png" alt="Nightfall Rhythm" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Nightfall Rhythm</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">Every corner turned felt like a secret invitation—music from somewhere, lights from everywhere.</p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <p class="title">Nightfall Rhythm</p>
+                <p class="note">The city’s night had a pulse—unplanned detours led to the best sounds and unexpected friends. —Purvi & Ayushi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Berlin Memory Snippet -->
+      <section class="section" id="memory">
+        <h2>Berlin Memory</h2>
+        <div class="desc">
+          Some of our core memories were made in this city - 
+        </div>
+        <div class="memory">
+          <div class="flip-card" style="max-width:320px;">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/berlin.png" alt="Sunset at Klunkerkranich" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Sunset Pause</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">We sat on the rooftop as the city turned gold, strangers became memory.</p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <p class="title">Sunset Pause</p>
+                <p class="note">Sipping a drink while the sky shifted to magenta—someone played a soft beat and the city felt like it paused just for us. —Purvi</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="memory-text">
+            <h3>Lost, Broke & Phoneless in Berlin:</h3>
+            <p>One of my most “character-building” (read: mildly traumatic) days? I was on my way to a full-day seminar at TU Berlin 9-6 when a student accidentally knocked me so hard my phone flew and died on the spot. Display gone. No Google Maps. No SOS. Just me, 5 euros, and a rapidly crumbling sense of direction.</p>
+ <p>I wandered through Berlin like it was 1997, asking strangers, misreading signs, and praying I was headed north. And somehow, this chaotic city, in all its weirdly scary charm, didn’t let me fall apart. Turns out, Berlin is surprisingly kind to the lost and slightly panicked.</p>
+
+<p>👉 Want the full messy, mildly heroic story? It’s on the blog.</p>
+            <p style="margin-top:8px; font-style:italic;">“Survived Berlin with 5 euros, no phone, and pure delusion. 10/10 would panic again.”</p> 
+            <p><em>— Purvi</em></p>
+          </div>
+
+          <div class="flip-card" style="max-width:320px;">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/glasgow.png" alt="Night walk" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Midnight Streets</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">The city felt endless, every lit window a story.</p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <p class="title">Midnight Streets</p>
+                <p class="note">We wandered without a map. The night had its own itinerary, and it was better than any we’d drawn. —Ayushi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Things to Do -->
+      <section class="section" id="things-to-do">
+        <h2>Things to Do</h2>
+        <div class="desc">
+          Tired of the pre-trip rabbit hole?
+We get it, endless Instagram reels, travel blogs, and asking ChatGPT (hi 👋). Been there, done all that. So you don’t have to.
+
+<p>We also spent over 20 days soaking in Berlin together, getting lost, finding gems, and figuring out what’s actually worth your time (and what’s just good lighting).</p>
+
+Scroll through our favorite spots below. Tap the ♥️ icons to build your own custom itinerary and share it with your travel crew.
+
+Let’s make this trip feel less like planning, and more like living.
+        </div>
+
+        <div class="todo-filters" aria-label="filters for things to do">
+          <button data-filter="all" class="active">All</button>
+          <button data-filter="must">Must Visit</button>
+          <button data-filter="views">Best Views</button>
+          <button data-filter="cafes">Cafe Recs</button>
+          <button data-filter="nightlife">Nightlife</button>
+          <button data-filter="offbeat">Offbeat</button>
+        </div>
+
+        <div class="todo-grid">
+          <!-- Must Visit -->
+          <div class="todo-card" data-category="must" data-id="brandenburg-gate">
+            <div class="save-btn" aria-label="save Brandenburg Gate"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Brandenburg Gate</h3>
+            <p>
+  The symbolic heart, start here to feel Berlin's layers of history and reinvention. 
+  Take a <strong>free walking tour</strong> that lets you cover all the iconic landmarks while hearing the stories behind them.
+</p>
+
+<p>
+  Check out our fav free walking tours: 
+  <a href="https://www.guruwalk.com/walks/berlin" target="_blank">GuruWalk Berlin</a>, 
+  <a href="https://www.neweuropetours.eu/berlin" target="_blank">New Europe Tours</a>, and 
+  <a href="https://www.freetour.com/berlin" target="_blank">FreeTour Berlin</a>.
+</p>
+
+            <small>Iconic landmark</small>
+          </div>
+          <div class="todo-card" data-category="must" data-id="reichstag">
+            <div class="save-btn" aria-label="save Reichstag"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Reichstag</h3>
+            <p>Transparent democracy in glass, you can book it from
+              <a href="https://visite.bundestag.de/BAPWeb/pages/createBookingRequest/viewBasicInformation.jsf?lang=en" target="_blank">here</a>,
+            </p>
+            <small>Architecture & view</small>
+          </div>
+          <div class="todo-card" data-category="must" data-id="east-side-gallery">
+            <div class="save-btn" aria-label="save East Side Gallery"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>East Side Gallery</h3>
+            <p>Open-air mural stretch that captures the city’s changing stories.</p>
+            <small>Street art</small>
+          </div>
+           <div class="todo-card" data-category="must" data-id="east-side-gallery">
+            <div class="save-btn" aria-label="save East Side Gallery"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Boros Bunker Collection</h3>
+            <p>A stark WWII bunker reborn as one of Berlin’s most intimate and intense contemporary art experiences.</p>
+<p>Book at least a month in advance, tours fill up fast and are only offered Thursday to Sunday in German or English. Each group is small (~12 people), and every tour includes the rooftop top‑floor view (where the collector actually lives) 
+</p>
+<p>you can book it from <a href="https://boros-collection.com/en/plan-a-visit?" target="_blank">here</a>,
+            <small>Contemporary art</small>
+          </div>
+
+          <!-- Best Views -->
+          <div class="todo-card" data-category="views" data-id="victory-column">
+            <div class="save-btn" aria-label="save Victory Column"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Tempelhofer Feld</h3>
+            <p>Once an airport, now a massive open park where Berlin breathes. People skate, bike, picnic, and fly kites on actual runways. It's raw, it's weird, it’s Berlin.
+
+<li>Best time: Late afternoon to sunset, grab a drink and chill on the grass.</li>
+
+<li>Vibe: Urban freedom with a punk heart.</li></p>
+            <small>Sunset spot</small>
+          </div>
+          <div class="todo-card" data-category="views" data-id="klunkerkranich">
+            <div class="save-btn" aria-label="save Klunkerkranich"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Klunkerkranich</h3>
+            <p>Rooftop garden with relaxed sunset energy and a soft city slowdown.</p>
+            <small>Golden hour</small>
+          </div>
+          <div class="todo-card" data-category="views" data-id="teufelsberg">
+            <div class="save-btn" aria-label="save Teufelsberg"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Boxhagener Platz rooftops (if you know a local)</h3>
+            <p>Berlin rooftops are a vibe. Many older buildings let you climb up, but be respectful and quiet. </p>
+              
+              <p>You can also try visiting Modersohnbrücke - A simple railway bridge in Friedrichshain, but people gather here almost daily to watch the sunset over the tracks. Chill, social, totally Berlin.</p>
+            <small>Atmospheric</small>
+          </div>
+
+          <!-- Cafe Recs -->
+          <div class="todo-card" data-category="cafes" data-id="the-barn">
+            <div class="save-btn" aria-label="save The Barn"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>The Barn</h3>
+            <p>Clean, crafted coffee in minimalist light-filled spaces—perfect morning start.</p>
+            <small>Focus & flavor</small>
+          </div>
+          <div class="todo-card" data-category="cafes" data-id="father-carpenter">
+            <div class="save-btn" aria-label="save Father Carpenter"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Father Carpenter</h3>
+            <p>Cozy courtyard nook with slow sips and intimate conversation energy.</p>
+            <small>Hidden gem</small>
+          </div>
+          <div class="todo-card" data-category="cafes" data-id="house-small-wonder">
+            <div class="save-btn" aria-label="save House of Small Wonder"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>House of Small Wonder</h3>
+            <p>Whimsical brunch storybook—it feels like stepping into comfort.</p>
+            <small>Memory-making</small>
+          </div>
+
+          <!-- Nightlife -->
+          <div class="todo-card" data-category="nightlife" data-id="berghain">
+            <div class="save-btn" aria-label="save Berghain"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Berghain</h3>
+            <p>Techno temple that resets your sense of time, go with no expectations.</p>
+            <small>Legendary</small>
+          </div>
+          <div class="todo-card" data-category="nightlife" data-id="sisyphos">
+            <div class="save-btn" aria-label="save Sisyphos"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Sisyphos</h3>
+            <p>Festival energy stretching from dusk to dawn,lose track of day.</p>
+            <small>Bohemian</small>
+          </div>
+          <div class="todo-card" data-category="nightlife" data-id="watergate">
+            <div class="save-btn" aria-label="save Watergate"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Watergate</h3>
+            <p>House beats by the river with reflective city lights framing the rhythm.</p>
+            <small>Vibe & view</small>
+          </div>
+
+          <!-- Offbeat -->
+          <div class="todo-card" data-category="offbeat" data-id="raw-gelande">
+            <div class="save-btn" aria-label="save RAW-Gelände"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>RAW-Gelände</h3>
+            <p>Collective creative hub full of pop-ups, street expression, and local pulse.</p>
+            <small>Ever changing</small>
+          </div>
+          <div class="todo-card" data-category="offbeat" data-id="spreepark">
+            <div class="save-btn" aria-label="save Spreepark"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Spreepark</h3>
+            <p>Abandoned amusement park—time feels warped in guided explorations.</p>
+            <small>Mysterious</small>
+          </div>
+          <div class="todo-card" data-category="offbeat" data-id="buchstabenmuseum">
+            <div class="save-btn" aria-label="save Buchstabenmuseum"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <h3>Buchstabenmuseum</h3>
+            <p>Typography museum of vintage letters; design and stories carved in signs of another era.</p>
+            <small>Quirky archive</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- Best Views -->
+      <section class="section" id="best-views">
+        <h2>Best Views</h2>
+        <div class="desc">
+          Sunrise / sunset / rooftop moments that turn the city into a frame you want to pause on.
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="card" data-id="klunkerkranich-view">
+            <div class="save-btn" aria-label="save Klunkerkranich"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Sunset</div>
+            <h3>Klunkerkranich</h3>
+            <p>Rooftop garden with sweeping colors—sunsets here feel like a soft slowdown of time.</p>
+          </div>
+          <div class="card" data-id="victory-column-view">
+            <div class="save-btn" aria-label="save Victory Column"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Viewpoint</div>
+            <h3>Victory Column</h3>
+            <p>Climb early for quiet panoramas; the city unfolds in symmetry from above.</p>
+          </div>
+          <div class="card" data-id="teufelsberg-view">
+            <div class="save-btn" aria-label="save Teufelsberg"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Atmosphere</div>
+            <h3>Teufelsberg</h3>
+            <p>Abandoned listening post with otherworldly views—fog, sky, and distant soundscape collide.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Aesthetic Cafe Recs -->
+      <section class="section" id="cafes">
+        <h2>Aesthetic Cafe Recommendations</h2>
+        <div class="desc">
+          Spaces where your coffee tastes like pause and the design becomes part of the memory.
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="card" data-id="the-barn-cafe">
+            <div class="save-btn" aria-label="save The Barn"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Minimal</div>
+            <h3>The Barn</h3>
+            <p>Light-filled, focused coffee—where craftsmanship meets quiet mornings. Ideal for writing or watching the city wake.</p>
+          </div>
+          <div class="card" data-id="father-carpenter-cafe">
+            <div class="save-btn" aria-label="save Father Carpenter"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Cozy</div>
+            <h3>Father Carpenter</h3>
+            <p>Hidden courtyard vibes, soft music, and espresso that lets you linger. Perfect for slow conversation.</p>
+          </div>
+          <div class="card" data-id="house-small-wonder-cafe">
+            <div class="save-btn" aria-label="save House of Small Wonder"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Whimsical</div>
+            <h3>House of Small Wonder</h3>
+            <p>Storybook design with comfort food—plant-filled ceilings and brunch that feels like a warm memory.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nightlife -->
+      <section class="section" id="nightlife">
+        <h2>Nightlife</h2>
+        <div class="desc">
+          Berlin after dark is ritualistic—beats bleed, crowds dissolve, and spaces stretch in time.
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="card" data-id="berghain-night">
+            <div class="save-btn" aria-label="save Berghain"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Legendary</div>
+            <h3>Berghain</h3>
+            <p>The temple of techno—unapologetic, immersive, and transformative. Go with an open mind and loose expectations.</p>
+          </div>
+          <div class="card" data-id="sisyphos-night">
+            <div class="save-btn" aria-label="save Sisyphos"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Open-air</div>
+            <h3>Sisyphos</h3>
+            <p>Extended weekend energy—bohemian and elastic. Dance in sunrises and get lost in loose beauty.</p>
+          </div>
+          <div class="card" data-id="watergate-night">
+            <div class="save-btn" aria-label="save Watergate"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Riverside</div>
+            <h3>Watergate</h3>
+            <p>House music with city-light reflections—floor-to-ceiling windows meet deep rhythms by the Spree.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Offbeat Discoveries -->
+      <section class="section" id="offbeat">
+        <h2>Offbeat Discoveries</h2>
+        <div class="desc">
+          Editor’s picks—unexpected corners and local layers that don’t always make the postcards but define the feel.
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+          <div class="card" data-id="raw-gelande-offbeat">
+            <div class="save-btn" aria-label="save RAW-Gelände"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Creative</div>
+            <h3>RAW-Gelände</h3>
+            <p>Ever-evolving street art, pop-ups, and community markets. A raw expression of Berlin’s creative pulse.</p>
+          </div>
+          <div class="card" data-id="spreepark-offbeat">
+            <div class="save-btn" aria-label="save Spreepark"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Surreal</div>
+            <h3>Spreepark</h3>
+            <p>Abandoned amusement park with guided hauntings—feel how time warps in half-forgotten rides.</p>
+          </div>
+          <div class="card" data-id="buchstabenmuseum-offbeat">
+            <div class="save-btn" aria-label="save Buchstabenmuseum"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            <div class="label">Quirky</div>
+            <h3>Buchstabenmuseum</h3>
+            <p>Typography museum of vintage letters; design and stories carved in signs of another era.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Itinerary -->
+      <section class="section" id="itinerary">
+        <h2>Get Your Custom Berlin Itinerary</h2>
+        <div class="desc">
+          Choose your vibe, tell us how many are coming, and we’ll send you a tailored plan—free and personalized. Tap to connect on WhatsApp and the message will be prefilled for you.
+        </div>
+        <div class="itinerary-box">
+          <div style="display:flex; flex-wrap:wrap; gap:18px;">
+            <div style="flex:1; min-width:180px;">
+              <div class="field">
+                <label for="vibe">Vibe</label>
+                <select id="vibe">
+                  <option value="culture">Culture & History</option>
+                  <option value="nightlife">Nightlife & Beats</option>
+                  <option value="relax">Slow Views & Cafes</option>
+                  <option value="adventure">Offbeat Adventure</option>
+                  <option value="mixed">Mixed</option>
+                </select>
+              </div>
+            </div>
+            <div style="flex:1; min-width:180px;">
+              <div class="field">
+                <label for="people">Group Size</label>
+                <input type="number" id="people" min="1" value="2" />
+              </div>
+            </div>
+            <div style="flex:1; min-width:180px;">
+              <div class="field">
+                <label for="dates">Dates (optional)</label>
+                <input type="text" id="dates" placeholder="e.g., 10–13 Sept" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <p style="margin:6px 0;">
+              We'll build a custom itinerary based on what you want: vibes, crowd size, and timeframe. Hit the button and continue the chat on WhatsApp.
+            </p>
+            <button class="btn" id="whatsapp-btn">Get Itinerary on WhatsApp</button>
+            <small style="display:block; margin-top:6px; color:#555;">
+              Replace <code>+1234567890</code> in the script with your actual WhatsApp number to receive the message.
+            </small>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Itinerary toolbar (hidden until there are saved items) -->
+    <div id="itinerary-toolbar" class="itinerary-toolbar" style="display:none;">
+      <div style="flex:1; min-width:140px;">
+        <h4>Your Berlin mini-itinerary</h4>
+        <div id="itinerary-summary" style="margin-bottom:6px; font-size:0.9rem; line-height:1.2;"></div>
+        <div class="saved-list" id="saved-list"></div>
+        <div style="font-size:0.6rem; color:#555;">Build, copy, or share what you’ve saved.</div>
+      </div>
+      <div class="itinerary-actions">
+        <button id="copy-link">Copy Link</button>
+        <button id="share-whatsapp">Share on WhatsApp</button>
+        <button id="share-email" class="secondary">Email</button>
+        <button id="clear-itinerary" class="secondary">Clear</button>
+      </div>
+    </div>
+
+    <script>
+      // Display name mapping
+      const DISPLAY_NAMES = {
+        "brandenburg-gate": "Brandenburg Gate",
+        "reichstag": "Reichstag",
+        "east-side-gallery": "East Side Gallery",
+        "victory-column": "Victory Column",
+        "klunkerkranich": "Klunkerkranich",
+        "teufelsberg": "Teufelsberg",
+        "the-barn": "The Barn",
+        "father-carpenter": "Father Carpenter",
+        "house-small-wonder": "House of Small Wonder",
+        "berghain": "Berghain",
+        "sisyphos": "Sisyphos",
+        "watergate": "Watergate",
+        "raw-gelande": "RAW-Gelände",
+        "spreepark": "Spreepark",
+        "buchstabenmuseum": "Buchstabenmuseum",
+        "klunkerkranich-view": "Klunkerkranich",
+        "victory-column-view": "Victory Column",
+        "teufelsberg-view": "Teufelsberg",
+        "the-barn-cafe": "The Barn",
+        "father-carpenter-cafe": "Father Carpenter",
+        "house-small-wonder-cafe": "House of Small Wonder",
+        "berghain-night": "Berghain",
+        "sisyphos-night": "Sisyphos",
+        "watergate-night": "Watergate",
+        "raw-gelande-offbeat": "RAW-Gelände",
+        "spreepark-offbeat": "Spreepark",
+        "buchstabenmuseum-offbeat": "Buchstabenmuseum"
+      };
+      function getDisplayName(id) {
+        return DISPLAY_NAMES[id] || id.replace(/[-_]/g, " ");
+      }
+
+      const STORAGE_KEY = "berlin-saved-items";
+      let previousSaved = [];
+
+      function getSaved() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch { return []; }
+      }
+      function setSaved(arr) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+        refreshToolbar();
+      }
+      function toggleSaved(id) {
+        let saved = getSaved();
+        if (saved.includes(id)) {
+          saved = saved.filter(s => s !== id);
+        } else {
+          saved.push(id);
+        }
+        setSaved(saved);
+        updateCardState();
+      }
+
+      function updateCardState() {
+        const saved = getSaved();
+        document.querySelectorAll(".save-btn").forEach(btn => {
+          const parent = btn.closest("[data-id]");
+          if (!parent) return;
+          const id = parent.dataset.id;
+          if (saved.includes(id)) {
+            btn.classList.add("saved");
+          } else {
+            btn.classList.remove("saved");
+          }
+        });
+      }
+
+      function updateSummary() {
+        const summaryEl = document.getElementById("itinerary-summary");
+        const saved = getSaved();
+        if (saved.length === 0) {
+          summaryEl.textContent = "";
+          return;
+        }
+        const names = saved.map((id, idx) => `${idx + 1}. ${getDisplayName(id)}`);
+        const baseUrl = `${window.location.origin}${window.location.pathname}`;
+        const param = encodeURIComponent(saved.join(","));
+        const shareLink = `${baseUrl}?saved=${param}`;
+
+        summaryEl.innerHTML = `
+          <strong>Today's Berlin itinerary:</strong> ${names.join(" · ")}.<br/>
+          Recommended by <em>Natsu & Kashii</em>. 
+          <a href="${shareLink}" style="color: var(--accent); text-decoration:underline;">View / share this</a>
+        `;
+      }
+
+      function refreshToolbar() {
+        const toolbar = document.getElementById("itinerary-toolbar");
+        const saved = getSaved();
+        const savedList = document.getElementById("saved-list");
+        savedList.innerHTML = "";
+        if (saved.length === 0) {
+          toolbar.style.display = "none";
+          previousSaved = [];
+          updateSummary();
+          return;
+        }
+        toolbar.style.display = "flex";
+
+        const newlyAdded = saved.filter(id => !previousSaved.includes(id));
+        saved.forEach(id => {
+          const pill = document.createElement("div");
+          pill.className = "saved-pill";
+          pill.textContent = getDisplayName(id);
+          const x = document.createElement("span");
+          x.style.marginLeft = "6px";
+          x.style.cursor = "pointer";
+          x.textContent = "×";
+          x.addEventListener("click", () => {
+            toggleSaved(id);
+          });
+          pill.appendChild(x);
+
+          if (newlyAdded.includes(id)) {
+            pill.classList.add("bounce");
+            pill.addEventListener("animationend", () => {
+              pill.classList.remove("bounce");
+            });
+          }
+          savedList.appendChild(pill);
+        });
+
+        previousSaved = [...saved];
+        updateSummary();
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // progressive reveal
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll(".card, .todo-card").forEach(el => {
+          observer.observe(el);
+        });
+
+        // mini-TOC active section
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const id = entry.target.id;
+            const link = document.querySelector(`.mini-nav a[data-target="${id}"]`);
+            if (link) {
+              if (entry.isIntersecting) {
+                document.querySelectorAll(".mini-nav a").forEach(a => a.classList.remove("active"));
+                link.classList.add("active");
+              }
+            }
+          });
+        }, { rootMargin: "-40% 0px -50% 0px" });
+
+        document.querySelectorAll(".section").forEach(sec => {
+          sectionObserver.observe(sec);
+        });
+
+        // save button listeners
+        document.querySelectorAll(".save-btn").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const card = btn.closest("[data-id]");
+            if (!card) return;
+            const id = card.dataset.id;
+            toggleSaved(id);
+          });
+        });
+
+        // filter buttons
+        document.querySelectorAll(".todo-filters button").forEach(b => {
+          b.addEventListener("click", () => {
+            document.querySelectorAll(".todo-filters button").forEach(x => x.classList.remove("active"));
+            b.classList.add("active");
+            const filter = b.dataset.filter;
+            document.querySelectorAll(".todo-card").forEach(card => {
+              if (filter === "all" || card.dataset.category === filter) {
+                card.style.display = "flex";
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+        });
+
+        // deep link restore from query param
+        const params = new URLSearchParams(window.location.search);
+        if (params.has("saved")) {
+          try {
+            const incoming = decodeURIComponent(params.get("saved") || "");
+            const list = incoming.split(",").filter(Boolean);
+            setSaved(Array.from(new Set([...getSaved(), ...list])));
+          } catch {}
+        } else {
+          refreshToolbar();
+        }
+        updateCardState();
+      });
+
+      // Copy/share actions
+      document.getElementById("copy-link").addEventListener("click", () => {
+        const saved = getSaved();
+        if (saved.length === 0) return;
+        const param = encodeURIComponent(saved.join(","));
+        const url = `${window.location.origin}${window.location.pathname}?saved=${param}`;
+        const names = saved.map((id, idx) => `${idx + 1}. ${getDisplayName(id)}`).join("\n");
+        const textSummary = `Today's Berlin itinerary:\n${names}\n\n Recommended by Natsu & Kasii\n${url}`;
+        navigator.clipboard.writeText(textSummary);
+        alert("Itinerary copied!");
+      });
+     document.getElementById("share-whatsapp").addEventListener("click", () => {
+  const saved = getSaved();
+  if (saved.length === 0) return;
+  const param = encodeURIComponent(saved.join(","));
+  const baseUrl = `${window.location.origin}${window.location.pathname}`;
+  const shareLink = `${baseUrl}?saved=${param}`;
+  const names = saved
+    .map((id, idx) => `${idx + 1}. ${getDisplayName(id)}`)
+    .join("\n");
+  const textSummary = `My Berlin mini-itinerary:\n${names}\n\n Recommended by Natsu & Kasii\n${shareLink}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(textSummary)}`, "_blank");
+});
+
+      document.getElementById("share-email").addEventListener("click", () => {
+        const saved = getSaved();
+        if (saved.length === 0) return;
+        const param = encodeURIComponent(saved.join(","));
+        const url = `${window.location.origin}${window.location.pathname}?saved=${param}`;
+        window.location.href = `mailto:?subject=My Berlin Mini-Itinerary&body=${encodeURIComponent("Here's what I saved:\n" + url)}`;
+      });
+      document.getElementById("clear-itinerary").addEventListener("click", () => {
+        localStorage.removeItem(STORAGE_KEY);
+        updateCardState();
+        refreshToolbar();
+      });
+
+      // WhatsApp itinerary builder (custom)
+      const whatsappBtn = document.getElementById("whatsapp-btn");
+      whatsappBtn.addEventListener("click", () => {
+        const vibe = document.getElementById("vibe").value;
+        const people = document.getElementById("people").value;
+        const dates = document.getElementById("dates").value;
+        let msg = `Hi! I'd love a custom Berlin itinerary, from Natsu&Kashii %0A`;
+        msg += `Vibe: ${vibe}%0A`;
+        msg += `Group size: ${people}%0A`;
+        if (dates.trim()) { msg += `Dates: ${dates}%0A`; }
+        msg += `Please help me plan something memorable! 😊`;
+
+        const phone = "7999465459"; 
+        const url = `https://wa.me/${phone}?text=${msg}`;
+        window.open(url, "_blank");
+      });
+
+      // ambient fade on scroll
+      window.addEventListener("scroll", () => {
+        const hero = document.querySelector(".hero");
+        const ambient = document.querySelector(".ambient");
+        if (!hero || !ambient) return;
+        const rect = hero.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const progress = Math.min(Math.max(0, 1 - (rect.bottom / vh)), 1);
+        ambient.style.opacity = String(1 - Math.min(progress * 1.2, 1));
+      });
+    </script>
+  </body>
+</html>

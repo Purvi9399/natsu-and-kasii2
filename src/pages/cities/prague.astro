@@ -1,0 +1,1190 @@
+---
+title: "Prague"
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Prague · Natsu & Kasii</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fonts: Prague mix of historic elegance + modern clarity -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Space+Grotesk:wght@400;700&family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f2efe9;
+        --card: #ffffff;
+        --text: #2d2b31;
+        --muted: #7a6f84;
+        --accent: #4a5a6a; /* deep slate blue/teal */
+        --accent2: #e7d8c9; /* soft parchment */
+        --highlight: #c85e3f; /* warm burnt orange */
+        --radius: 16px;
+        --shadow: 0 38px 100px -15px rgba(72,60,80,0.25);
+        --transition: 0.35s cubic-bezier(.3,.1,.25,1);
+        --heading: "Playfair Display", serif;
+        --body: "Space Grotesk", system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+        --quote: "Great Vibes", cursive;
+      }
+
+      * { box-sizing:border-box; }
+
+      body {
+        margin: 0;
+        font-family: var(--body);
+        background: var(--bg);
+        color: var(--text);
+        line-height:1.55;
+        scroll-behavior: smooth;
+        position: relative;
+        min-height:100vh;
+      }
+
+      /* Prague skyline blurred background (e.g., Charles Bridge / Castle) */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: url('/images/prague-blur.jpg') center/cover no-repeat fixed;
+        filter: blur(16px) brightness(1.05);
+        opacity: 0.14;
+        z-index: 0;
+        pointer-events: none;
+        mix-blend-mode: normal;
+      }
+
+      a { color: var(--highlight); text-decoration:none; }
+      a:hover { text-decoration: underline; }
+
+      .container {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 1.5rem 1rem 5rem;
+        position: relative;
+        z-index:1;
+      }
+
+      .back-btn {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        background: rgba(255,255,255,0.9);
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight:600;
+        box-shadow: 0 18px 50px -10px rgba(72,60,80,0.2);
+        backdrop-filter: blur(6px);
+        z-index:1001;
+      }
+      .back-btn:hover { background:#fff; }
+
+      .mini-nav {
+        display:flex;
+        gap:1rem;
+        flex-wrap:wrap;
+        justify-content:center;
+        margin-bottom:1rem;
+        position:sticky;
+        top:10px;
+        z-index:100;
+        background: rgba(242,239,233,0.95);
+        padding:8px 12px;
+        border-radius: 12px;
+        box-shadow: 0 12px 40px -10px rgba(72,60,80,0.15);
+        font-size:0.9rem;
+      }
+      .mini-nav a {
+        padding:6px 14px;
+        border-radius:8px;
+        font-weight:600;
+        position:relative;
+        color: var(--text);
+        transition: var(--transition);
+      }
+      .mini-nav a.active,
+      .mini-nav a:hover {
+        background: var(--accent);
+        color:#fff;
+      }
+
+      .hero {
+        position: relative;
+        text-align: center;
+        padding: 2rem 0 1rem;
+        overflow: hidden;
+      }
+      .hero h1 {
+        font-family: var(--heading);
+        font-size: 3.8rem;
+        margin: 0;
+        color: var(--accent);
+        position: relative;
+        z-index:2;
+      }
+      .subtitle {
+        margin: 8px auto 12px;
+        max-width: 700px;
+        font-size: 1.1rem;
+        color: var(--muted);
+        position: relative;
+        z-index:2;
+      }
+      .quote {
+        font-family: var(--quote);
+        font-size:1.1rem;
+        margin: 12px auto 4px;
+        max-width: 700px;
+        position: relative;
+        color: #4a3f58;
+      }
+      .quote small {
+        display:block;
+        margin-top:4px;
+        font-size:0.65rem;
+        font-weight:600;
+        font-family: var(--body);
+        color: #6b6273;
+      }
+
+      /* Ambient mist / old-paper float */
+      .ambient {
+        pointer-events:none;
+        position:absolute;
+        inset:0;
+        z-index:1;
+        overflow:hidden;
+      }
+      .mist {
+        position:absolute;
+        width:120px;
+        height:120px;
+        background: radial-gradient(circle at 40% 40%, rgba(232,220,210,0.35), transparent 70%);
+        border-radius:50%;
+        filter: blur(30px);
+        mix-blend-mode: screen;
+        animation: sway 25s ease-in-out infinite;
+        opacity:0.5;
+      }
+      @keyframes sway {
+        0% { transform: translate(0,0) scale(1); }
+        50% { transform: translate(-18px,22px) scale(1.05); }
+        100% { transform: translate(0,0) scale(1); }
+      }
+
+      .section {
+        margin: 3.5rem 0;
+        position: relative;
+      }
+      .section h2 {
+        font-family: var(--heading);
+        font-size:2.6rem;
+        margin-bottom:6px;
+        display:inline-block;
+        position: relative;
+      }
+      .section h2::after {
+        content:"";
+        display:block;
+        height:4px;
+        width:60px;
+        background: var(--highlight);
+        border-radius:2px;
+        margin-top:6px;
+      }
+      .section .desc {
+        margin:8px 0 18px;
+        max-width:820px;
+        color: var(--muted);
+      }
+
+      .grid { display:grid; gap:1.25rem; }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding:1.3rem 1.55rem;
+        position:relative;
+        overflow:hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        display:flex;
+        flex-direction:column;
+        min-height:170px;
+        opacity:0;
+        transform: translateY(15px);
+      }
+      .card.visible { opacity:1; transform: translateY(0); }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 45px 110px -15px rgba(72,60,80,0.35);
+      }
+      .card h3 {
+        margin:0 0 6px;
+        font-family: var(--heading);
+        font-size:1.4rem;
+      }
+      .card p { margin:0; font-size:0.95rem; color:#4a3f5f; flex:1; }
+      .label {
+        display:inline-block;
+        background: var(--accent2);
+        color:#4b3f5f;
+        padding:4px 10px;
+        border-radius:999px;
+        font-size:0.6rem;
+        font-weight:600;
+        margin-bottom:6px;
+      }
+
+      .pill-list {
+        display:flex;
+        gap:12px;
+        flex-wrap:wrap;
+        margin:12px 0 6px;
+      }
+      .pill {
+        background: var(--highlight);
+        color:white;
+        padding:10px 18px;
+        border-radius:999px;
+        font-weight:600;
+        font-size:0.85rem;
+      }
+
+      .postcards {
+        display:flex;
+        gap:18px;
+        flex-wrap:wrap;
+        margin:2rem 0 1rem;
+        justify-content:center;
+      }
+      .flip-card {
+        background: transparent;
+        width: 300px;
+        height: 200px;
+        perspective: 1000px;
+        position: relative;
+      }
+      .flip-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        border-radius: 14px;
+      }
+      .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+      .flip-front,
+      .flip-back {
+        position: absolute;
+        width:100%;
+        height:100%;
+        backface-visibility: hidden;
+        border-radius:14px;
+        overflow:hidden;
+        box-shadow: 0 28px 60px -10px rgba(0,0,0,0.08);
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-end;
+        padding:14px;
+        font-size:0.85rem;
+      }
+      .flip-front img {
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit: cover;
+        filter: brightness(1);
+      }
+      .flip-front .overlay {
+        position: relative;
+        z-index:2;
+        background: rgba(0,0,0,0.25);
+        padding:8px 12px;
+        border-radius:10px;
+        color:#fff;
+        backdrop-filter: blur(4px);
+      }
+      .flip-back {
+        background: var(--card);
+        transform: rotateY(180deg);
+        padding:18px;
+        display:flex;
+        flex-direction:column;
+      }
+      .flip-back .title {
+        margin:0;
+        font-family: var(--heading);
+        font-size:1rem;
+      }
+      .flip-back .note {
+        margin:6px 0 0;
+        font-size:0.75rem;
+        flex:1;
+        color:#4a3f5f;
+      }
+
+      .todo-filters {
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+        margin:10px 0 16px;
+      }
+      .todo-filters button {
+        background: rgba(255,255,255,0.15);
+        border:1px solid rgba(72,60,80,0.5);
+        padding:8px 16px;
+        border-radius:999px;
+        cursor:pointer;
+        color: var(--text);
+        font-weight:600;
+        transition: var(--transition);
+        backdrop-filter: blur(6px);
+      }
+      .todo-filters button.active {
+        background: var(--highlight);
+        color:#fff;
+        border-color: var(--highlight);
+      }
+      .todo-grid {
+        display:grid;
+        gap:1.25rem;
+        grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      }
+      .todo-card {
+        position:relative;
+        background: var(--card);
+        border-radius: var(--radius);
+        padding:1.25rem 1.5rem;
+        box-shadow: var(--shadow);
+        display:flex;
+        flex-direction:column;
+        transition: var(--transition);
+        min-height:170px;
+        opacity:0;
+        transform: translateY(15px);
+      }
+      .todo-card.visible { opacity:1; transform:translateY(0); }
+      .todo-card:hover { transform: translateY(-3px); }
+      .todo-card h3 { margin:0 0 6px; font-family: var(--heading); font-size:1.2rem; }
+      .todo-card small { margin-top:auto; font-size:0.65rem; opacity:.75; }
+
+      .save-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(255,255,255,0.95);
+        border-radius:50%;
+        width:32px;
+        height:32px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        cursor:pointer;
+        border:1px solid rgba(72,60,80,0.4);
+        transition: var(--transition);
+        padding:0;
+      }
+      .save-btn svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--highlight);
+        fill: none;
+        transition: var(--transition);
+      }
+      .save-btn.saved {
+        background: var(--highlight);
+        border-color: var(--highlight);
+      }
+      .save-btn.saved svg {
+        stroke: white;
+        fill: white;
+      }
+
+      .itinerary-toolbar {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #fff;
+        border-radius: 14px;
+        padding: 14px 18px;
+        box-shadow: 0 40px 100px -10px rgba(72,60,80,0.3);
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        font-size: 0.85rem;
+        z-index: 1200;
+        max-width: 380px;
+        flex-wrap: wrap;
+        border:1px solid rgba(72,60,80,0.3);
+      }
+      .saved-list {
+        display:flex;
+        flex-wrap:wrap;
+        gap:6px;
+        margin-bottom:4px;
+      }
+      .saved-pill {
+        background: rgba(200,94,63,0.1);
+        padding: 4px 10px;
+        border-radius:999px;
+        font-size:0.6rem;
+        display:flex;
+        align-items:center;
+        gap:4px;
+      }
+      .itinerary-actions {
+        display:flex;
+        gap:8px;
+        flex-wrap:wrap;
+      }
+      .itinerary-actions button {
+        background: var(--highlight);
+        border:none;
+        color:white;
+        padding:6px 12px;
+        border-radius:999px;
+        cursor:pointer;
+        font-size:0.7rem;
+        font-weight:600;
+        transition: var(--transition);
+      }
+      .itinerary-actions button.secondary {
+        background: #666;
+      }
+      @keyframes pill-bounce {
+        0% { transform: scale(1); }
+        30% { transform: scale(1.15); }
+        60% { transform: scale(0.95); }
+        100% { transform: scale(1); }
+      }
+      .saved-pill.bounce { animation: pill-bounce 0.6s ease; }
+
+      .memory {
+        display:grid;
+        gap:24px;
+        grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+        margin:1rem 0 2rem;
+      }
+      .memory-text {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding:1.5rem;
+        position: relative;
+        box-shadow: var(--shadow);
+      }
+      .memory-text h3 {
+        margin-top:0;
+        font-family: var(--heading);
+        font-size:1.6rem;
+      }
+      .memory-text p {
+        margin:0.5rem 0 0;
+        font-size:0.95rem;
+      }
+
+      .itinerary-box {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding:1.5rem 1.75rem;
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        box-shadow: var(--shadow);
+        position:relative;
+      }
+      .itinerary-box h2 {
+        margin:0;
+        font-family: var(--heading);
+        font-size:2rem;
+      }
+      .field {
+        flex:1;
+        min-width:140px;
+        display:flex;
+        flex-direction:column;
+      }
+      .field label {
+        font-size:0.65rem;
+        font-weight:600;
+        margin-bottom:4px;
+        text-transform:uppercase;
+        letter-spacing:0.8px;
+        color:#666;
+      }
+      .field select,
+      .field input {
+        padding:10px 12px;
+        border-radius:8px;
+        border:1px solid #ddd;
+        font-size:0.95rem;
+        outline:none;
+      }
+      .btn {
+        background: var(--highlight);
+        color:white;
+        border:none;
+        padding:12px 18px;
+        border-radius:999px;
+        cursor:pointer;
+        font-weight:600;
+        font-size:1rem;
+        transition: var(--transition);
+      }
+      .btn:hover { filter:brightness(1.05); }
+
+      @media (max-width:960px) {
+        .grid { grid-template-columns:1fr; }
+        .memory { grid-template-columns:1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="back-btn" href="/">← Back</a>
+
+    <div class="container">
+      <div class="mini-nav" aria-label="section navigation">
+        <a href="#best-time" data-target="best-time">Best Time</a>
+        <a href="#dont-miss" data-target="dont-miss">Don't Miss</a>
+        <a href="#postcards" data-target="postcards">Postcards</a>
+        <a href="#memory" data-target="memory">Prague Memory</a>
+        <a href="#things-to-do" data-target="things-to-do">Things to Do</a>
+        <a href="#best-views" data-target="best-views">Best Views</a>
+        <a href="#cafes" data-target="cafes">Aesthetic Cafés</a>
+        <a href="#nightlife" data-target="nightlife">Nightlife</a>
+        <a href="#offbeat" data-target="offbeat">Offbeat</a>
+        <a href="#itinerary" data-target="itinerary">Custom Itinerary</a>
+      </div>
+
+      <!-- Hero -->
+      <section class="hero" id="hero">
+        <div class="ambient" aria-hidden="true">
+          <div class="mist" style="top:15%; left:25%; animation-delay:1s;"></div>
+          <div class="mist" style="top:50%; left:70%; animation-delay:4s;"></div>
+          <div class="mist" style="top:75%; left:40%; animation-delay:7s;"></div>
+        </div>
+
+        <h1>Prague</h1>
+        <div class="subtitle">
+          A city where Gothic spires meet riverside hush, and time appears in layered cobblestones.
+          Prague is equal parts story and secret.
+        </div>
+        <div class="quote">
+          “Prague is the storybook that wrote itself in stone.” <small>— Local whisper</small>
+        </div>
+        <div class="quote">
+          “In alley light and river fog, every turn feels like a secret kept for you.” <small>— Traveler’s note</small>
+        </div>
+      </section>
+
+      <!-- Best Time to Visit -->
+      <section class="section" id="best-time">
+        <h2>Best Time to Visit</h2>
+        <div class="desc">
+          There isn’t a single “right” season—Prague shifts like a living mosaic. Winters are quiet
+          and misty, spring unfurls blossoms over castles, summers pulse with festivals and crowds,
+          and autumn paints the riverbanks in amber. For first-time visitors, late spring or early
+          autumn balance mild light, manageable crowds, and that lingering, slightly nostalgic
+          atmosphere. 
+        </div>
+        <div class="card" style="max-width:850px; margin:0 auto; display:flex; gap:20px; flex-wrap:wrap;">
+          <div style="flex:1; min-width:220px;">
+            <div class="label">Why First-Timers</div>
+            <h3 style="margin-top:0; font-size:1.35rem;">Soft light & breathing room</h3>
+            <p>
+              Late spring awakens the city without overwhelming it; early fall adds a golden hush
+              so every corner feels both alive and intimate.
+            </p>
+          </div>
+          <div style="flex:1; min-width:220px;">
+            <div class="label">Local Truth</div>
+            <h3 style="margin-top:0; font-size:1.35rem;">Seasons with stories</h3>
+            <p>
+              Prague’s mood changes with weather—each visit writes a new chapter. Come back in
+              winter for foggy quiet, or summer for street festivals.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Don't Miss -->
+      <section class="section" id="dont-miss">
+        <h2>Don't Miss</h2>
+        <div class="desc">
+          Core anchors a local would point to—these are the frames that define Prague’s soul.
+        </div>
+        <div class="pill-list">
+          <div class="pill">Prague Castle</div>
+          <div class="pill">Charles Bridge</div>
+          <div class="pill">Old Town Square</div>
+          <div class="pill">Vyšehrad</div>
+          <div class="pill">Jewish Quarter</div>
+        </div>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:8px;">
+          <div class="card" data-id="prague-castle">
+            <div class="save-btn" aria-label="save Prague Castle">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <div class="label">Historic</div>
+            <h3>Prague Castle</h3>
+            <p>
+              The hilltop complex that watches over the city—walk through courtyards, cathedral,
+              and viewpoints for layered perspective.
+            </p>
+          </div>
+          <div class="card" data-id="charles-bridge">
+            <div class="save-btn" aria-label="save Charles Bridge">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <div class="label">Iconic</div>
+            <h3>Charles Bridge</h3>
+            <p>
+              Early morning or late dusk—step onto the statue-lined span when light softens and the
+              Vltava reflects the towers.
+            </p>
+          </div>
+          <div class="card" data-id="old-town-square">
+            <div class="save-btn" aria-label="save Old Town Square">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <div class="label">Vibrant</div>
+            <h3>Old Town Square</h3>
+            <p>
+              The beating tile of Prague—catch the astronomical clock, street performers, and
+              layered façades.
+            </p>
+          </div>
+          <div class="card" data-id="vysehrad">
+            <div class="save-btn" aria-label="save Vyšehrad">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <div class="label">Overlook</div>
+            <h3>Vyšehrad</h3>
+            <p>
+              Fortress with quieter views—the old cemetery, river curve, and secret gardens feel
+              both grounded and ethereal.
+            </p>
+          </div>
+          <div class="card" data-id="jewish-quarter">
+            <div class="save-btn" aria-label="save Jewish Quarter">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <div class="label">Cultural</div>
+            <h3>Jewish Quarter</h3>
+            <p>
+              Layers of history woven in architecture—explore synagogues, narrow streets, and quiet
+              reflection points.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Postcards -->
+      <section class="section" id="postcards">
+        <h2>Postcards</h2>
+        <div class="desc">
+          Little flashes from Prague—moments that stuck, unplanned and luminous.
+        </div>
+        <div class="postcards">
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/prague-dusk.jpg" alt="Dusk over Vltava" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Vltava Dusk</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">
+                    River reflecting tower glows while city hums softly around it.
+                  </p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="title">Vltava Dusk</div>
+                <div class="note">
+                  We sat on the bank, watching lights ripple—silence felt like a shared secret. —Purvi
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/prague-cafe.jpg" alt="Cozy Café" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Corner Warmth</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">
+                    Steam from cups, old wood, and quiet conversation hiding in plain sight.
+                  </p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="title">Corner Warmth</div>
+                <div class="note">
+                  Found a small spot off the main street—coffee tasted like the city slowing down.
+                  —Ayushi
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prague Memory -->
+      <section class="section" id="memory">
+        <h2>Prague Memory</h2>
+        <div class="desc">
+          Unscripted layers—lost alley detours, unexpected music from a courtyard, and the quiet
+          comfort of ancient stones.
+        </div>
+        <div class="memory">
+          <div class="flip-card" style="max-width:320px;">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/prague-mist.jpg" alt="Misty Street" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Misty Morning</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">
+                    Fog lifting off cobbles, silent bells, and the first pastry of the day.
+                  </p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="title">Misty Morning</div>
+                <div class="note">
+                  Wandering before crowds, the city felt paused—every corner a quiet reveal. —Purvi
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="memory-text">
+            <h3>Unexpected Concert</h3>
+            <p>
+              We turned down a side lane and stumbled into a tiny jazz performance inside an old
+              cellar—music stitched into the walls. Prague rewarded curiosity.
+            </p>
+            <p style="margin-top:8px; font-style:italic;">
+              “The best stories are the ones you don't plan.” — Ayushi
+            </p>
+          </div>
+
+          <div class="flip-card" style="max-width:320px;">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <img src="/images/prague-night.jpg" alt="Night Light" />
+                <div class="overlay">
+                  <p class="title" style="margin:0;">Night Walk</p>
+                  <p class="note" style="margin:4px 0 0; font-size:0.7rem;">
+                    Lantern glow, quiet bridges, and the mild echo of footsteps.
+                  </p>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="title">Night Walk</div>
+                <div class="note">
+                  The city felt like a private trail—lights soft, air crisp, thoughtfulness constant.
+                  —Purvi & Ayushi
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Things to Do -->
+      <section class="section" id="things-to-do">
+        <h2>Things to Do</h2>
+        <div class="desc">
+          Local-tested layers—start with anchors, then drift into hidden corners. Everything here
+          feeds into a well-curated Prague itinerary (free for you).
+        </div>
+
+        <div class="todo-filters" aria-label="filters for things to do">
+          <button data-filter="all" class="active">All</button>
+          <button data-filter="must">Must Visit</button>
+          <button data-filter="views">Best Views</button>
+          <button data-filter="cafes">Aesthetic Cafés</button>
+          <button data-filter="nightlife">Nightlife</button>
+          <button data-filter="offbeat">Offbeat</button>
+        </div>
+
+        <div class="todo-grid">
+          <!-- Must Visit -->
+          <div class="todo-card" data-category="must" data-id="prague-castle">
+            <div class="save-btn" aria-label="save Prague Castle">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Prague Castle</h3>
+            <p>The historic crown—views, courtyards, and layers of power and quiet.</p>
+            <small>Landmark</small>
+          </div>
+          <div class="todo-card" data-category="must" data-id="charles-bridge">
+            <div class="save-btn" aria-label="save Charles Bridge">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Charles Bridge</h3>
+            <p>Stone procession over the Vltava—best before the crowds and after the light softens.</p>
+            <small>Historic</small>
+          </div>
+          <div class="todo-card" data-category="must" data-id="old-town-square">
+            <div class="save-btn" aria-label="save Old Town Square">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Old Town Square</h3>
+            <p>Clock rituals, cobbled rhythm, and layered façades that invite lingering.</p>
+            <small>Vibe</small>
+          </div>
+
+          <!-- Best Views -->
+          <div class="todo-card" data-category="views" data-id="petrin-hill">
+            <div class="save-btn" aria-label="save Petřín Hill">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Petřín Hill</h3>
+            <p>Elevated quiet—lookouts, mirror maze, and city spread beneath like a miniature world.</p>
+            <small>Panorama</small>
+          </div>
+          <div class="todo-card" data-category="views" data-id="letna-park">
+            <div class="save-btn" aria-label="save Letná Park">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Letná Park</h3>
+            <p>Riverside sweep and relaxed terraces—locals come here to breathe over the city.</p>
+            <small>Viewpoint</small>
+          </div>
+
+          <!-- Aesthetic Cafés -->
+          <div class="todo-card" data-category="cafes" data-id="cafe-slavia">
+            <div class="save-btn" aria-label="save Café Slavia">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Café Slavia</h3>
+            <p>Classic riverside café with high ceilings—where conversations drift like music.</p>
+            <small>Timeless</small>
+          </div>
+          <div class="todo-card" data-category="cafes" data-id="ema-espresso">
+            <div class="save-btn" aria-label="save EMA Espresso Bar">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>EMA Espresso Bar</h3>
+            <p>Modern craft coffee in a quiet nook—precision brewing meets local tempo.</p>
+            <small>Focus</small>
+          </div>
+
+          <!-- Nightlife -->
+          <div class="todo-card" data-category="nightlife" data-id="cross-club">
+            <div class="save-btn" aria-label="save Cross Club">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Cross Club</h3>
+            <p>Mechanical dreamscape—nightlife that feels like a kinetic installation.</p>
+            <small>Inventive</small>
+          </div>
+          <div class="todo-card" data-category="nightlife" data-id="hemingway-bar">
+            <div class="save-btn" aria-label="save Hemingway Bar">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Hemingway Bar</h3>
+            <p>Craft cocktails with old-world poise—quiet corners, layered flavors, and intent.</p>
+            <small>Refined</small>
+          </div>
+
+          <!-- Offbeat -->
+          <div class="todo-card" data-category="offbeat" data-id="john-lennon-wall">
+            <div class="save-btn" aria-label="save John Lennon Wall">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>John Lennon Wall</h3>
+            <p>Ever-changing mosaic of expression—graffiti, wishes, and color layered by locals.</p>
+            <small>Playful</small>
+          </div>
+          <div class="todo-card" data-category="offbeat" data-id="dox-centre">
+            <div class="save-btn" aria-label="save DOX Centre">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>DOX Centre</h3>
+            <p>Contemporary art in a repurposed industrial shell—unexpected and thoughtful.</p>
+            <small>Curated</small>
+          </div>
+          <div class="todo-card" data-category="offbeat" data-id="naplavka">
+            <div class="save-btn" aria-label="save Náplavka">
+              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
+            <h3>Náplavka</h3>
+            <p>Riverbank market and local pulse—weekend gatherings, small producers, and open-air rhythm.</p>
+            <small>Local</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- Custom Itinerary -->
+      <section class="section" id="itinerary">
+        <h2>Your Custom Prague Itinerary</h2>
+        <div class="desc">
+          Handcrafted from what you’ve saved—“This is your Prague mini-itinerary for today,”
+          numbered and recommended by Natsu & Kasii. Well-curated, personalized, and completely
+          free. Pick your vibe, group size, and dates; we’ll package it for you via WhatsApp.
+        </div>
+        <div class="itinerary-box">
+          <div style="display:flex; gap:18px; flex-wrap:wrap;">
+            <div class="field">
+              <label for="vibe">Vibe</label>
+              <select id="vibe">
+                <option value="historic">Historic</option>
+                <option value="artsy">Artsy</option>
+                <option value="cozy">Cozy Cafés</option>
+                <option value="night">Night Pulse</option>
+                <option value="mixed">Mixed</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="people">Group Size</label>
+              <input type="number" id="people" min="1" value="2" />
+            </div>
+            <div class="field">
+              <label for="dates">Dates (optional)</label>
+              <input type="text" id="dates" placeholder="e.g., 12–16 Sep" />
+            </div>
+          </div>
+          <div>
+            <p style="margin:6px 0;">
+              We’ll auto-generate a neat numbered itinerary based on what you’ve saved and the vibe
+              you choose. Shareable, light, and free—no signup needed.
+            </p>
+            <button class="btn" id="whatsapp-prague">Send on WhatsApp</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Toolbar -->
+    <div id="itinerary-toolbar" class="itinerary-toolbar" style="display:none;">
+      <div style="flex:1; min-width:140px;">
+        <h4>Your Prague mini-itinerary</h4>
+        <div id="itinerary-summary" style="margin-bottom:6px; font-size:0.9rem; line-height:1.2;"></div>
+        <div class="saved-list" id="saved-list"></div>
+        <div style="font-size:0.6rem; color:#555;">
+          Build, copy, or share what you’ve saved.
+        </div>
+      </div>
+      <div class="itinerary-actions">
+        <button id="copy-link">Copy Link</button>
+        <button id="share-whatsapp">Share on WhatsApp</button>
+        <button id="share-email" class="secondary">Email</button>
+        <button id="clear-itinerary" class="secondary">Clear</button>
+      </div>
+    </div>
+
+    <script>
+      const DISPLAY_NAMES = {
+        "prague-castle": "Prague Castle",
+        "charles-bridge": "Charles Bridge",
+        "old-town-square": "Old Town Square",
+        "vysehrad": "Vyšehrad",
+        "jewish-quarter": "Jewish Quarter",
+        "petrin-hill": "Petřín Hill",
+        "letna-park": "Letná Park",
+        "cafe-slavia": "Café Slavia",
+        "ema-espresso": "EMA Espresso Bar",
+        "cross-club": "Cross Club",
+        "hemingway-bar": "Hemingway Bar",
+        "john-lennon-wall": "John Lennon Wall",
+        "dox-centre": "DOX Centre",
+        "naplavka": "Náplavka"
+      };
+      function getDisplayName(id) {
+        return DISPLAY_NAMES[id] || id.replace(/[-_]/g, " ");
+      }
+
+      const STORAGE_KEY = "prague-saved-items";
+      let previousSaved = [];
+
+      function getSaved() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch { return []; }
+      }
+      function setSaved(arr) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+        refreshToolbar();
+      }
+      function toggleSaved(id) {
+        let saved = getSaved();
+        if (saved.includes(id)) saved = saved.filter(s => s !== id);
+        else saved.push(id);
+        setSaved(saved);
+        updateCardState();
+      }
+      function updateCardState() {
+        const saved = getSaved();
+        document.querySelectorAll(".save-btn").forEach(btn => {
+          const parent = btn.closest("[data-id]");
+          if (!parent) return;
+          const id = parent.dataset.id;
+          if (saved.includes(id)) btn.classList.add("saved");
+          else btn.classList.remove("saved");
+        });
+      }
+      function updateSummary() {
+        const summaryEl = document.getElementById("itinerary-summary");
+        const saved = getSaved();
+        if (!saved.length) {
+          summaryEl.textContent = "";
+          return;
+        }
+        const names = saved.map((id, idx) => `${idx + 1}. ${getDisplayName(id)}`);
+        const baseUrl = `${window.location.origin}${window.location.pathname}`;
+        const param = encodeURIComponent(saved.join(","));
+        const shareLink = `${baseUrl}?saved=${param}`;
+        summaryEl.innerHTML = `
+          <strong>Today's Prague itinerary:</strong> ${names.join(" · ")}.<br/>
+          Recommended by <em>Natsu & Kasii</em>. 
+          <a href="${shareLink}" style="color: var(--highlight); text-decoration:underline;">View / share this</a>
+        `;
+      }
+      function refreshToolbar() {
+        const toolbar = document.getElementById("itinerary-toolbar");
+        const saved = getSaved();
+        const savedList = document.getElementById("saved-list");
+        savedList.innerHTML = "";
+        if (!saved.length) {
+          toolbar.style.display = "none";
+          previousSaved = [];
+          updateSummary();
+          return;
+        }
+        toolbar.style.display = "flex";
+        const newlyAdded = saved.filter(id => !previousSaved.includes(id));
+        saved.forEach(id => {
+          const pill = document.createElement("div");
+          pill.className = "saved-pill";
+          pill.textContent = getDisplayName(id);
+          const x = document.createElement("span");
+          x.style.marginLeft = "6px";
+          x.style.cursor = "pointer";
+          x.textContent = "×";
+          x.addEventListener("click", () => toggleSaved(id));
+          pill.appendChild(x);
+          if (newlyAdded.includes(id)) {
+            pill.classList.add("bounce");
+            pill.addEventListener("animationend", () => pill.classList.remove("bounce"));
+          }
+          savedList.appendChild(pill);
+        });
+        previousSaved = [...saved];
+        updateSummary();
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll(".card, .todo-card").forEach(el => observer.observe(el));
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const id = entry.target.id;
+            const link = document.querySelector(`.mini-nav a[data-target="${id}"]`);
+            if (link && entry.isIntersecting) {
+              document.querySelectorAll(".mini-nav a").forEach(a => a.classList.remove("active"));
+              link.classList.add("active");
+            }
+          });
+        }, { rootMargin: "-40% 0px -50% 0px" });
+        document.querySelectorAll(".section").forEach(s => sectionObserver.observe(s));
+
+        document.querySelectorAll(".save-btn").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const card = btn.closest("[data-id]");
+            if (!card) return;
+            toggleSaved(card.dataset.id);
+          });
+        });
+
+        document.querySelectorAll(".todo-filters button").forEach(b => {
+          b.addEventListener("click", () => {
+            document.querySelectorAll(".todo-filters button").forEach(x => x.classList.remove("active"));
+            b.classList.add("active");
+            const filter = b.dataset.filter;
+            document.querySelectorAll(".todo-card").forEach(card => {
+              if (filter === "all" || card.dataset.category === filter) card.style.display="flex";
+              else card.style.display="none";
+            });
+          });
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        if (params.has("saved")) {
+          try {
+            const incoming = decodeURIComponent(params.get("saved") || "");
+            const list = incoming.split(",").filter(Boolean);
+            setSaved(Array.from(new Set([...getSaved(), ...list])));
+          } catch {}
+        } else {
+          refreshToolbar();
+        }
+        updateCardState();
+      });
+
+      document.getElementById("copy-link").addEventListener("click", () => {
+        const saved = getSaved();
+        if (!saved.length) return;
+        const param = encodeURIComponent(saved.join(","));
+        const url = `${window.location.origin}${window.location.pathname}?saved=${param}`;
+        const names = saved.map((id, idx) => `${idx+1}. ${getDisplayName(id)}`).join("\n");
+        const text = `Today's Prague itinerary:\n${names}\n\nRecommended by Natsu & Kasii\n${url}`;
+        navigator.clipboard.writeText(text);
+        alert("Itinerary copied!");
+      });
+      document.getElementById("share-whatsapp").addEventListener("click", () => {
+        const saved = getSaved();
+        if (!saved.length) return;
+        const baseUrl = `${window.location.origin}${window.location.pathname}`;
+        const param = encodeURIComponent(saved.join(","));
+        const shareLink = `${baseUrl}?saved=${param}`;
+        const names = saved.map((id, idx) => `${idx+1}. ${getDisplayName(id)}`).join("\n");
+        const summary = `My Prague mini-itinerary:\n${names}\n\nRecommended by Natsu & Kasii\n${shareLink}`;
+        window.open(`https://wa.me/?text=${encodeURIComponent(summary)}`, "_blank");
+      });
+      document.getElementById("share-email").addEventListener("click", () => {
+        const saved = getSaved();
+        if (!saved.length) return;
+        const param = encodeURIComponent(saved.join(","));
+        const url = `${window.location.origin}${window.location.pathname}?saved=${param}`;
+        window.location.href = `mailto:?subject=My Prague Mini-Itinerary&body=${encodeURIComponent("Here's what I saved:\n" + url)}`;
+      });
+      document.getElementById("clear-itinerary").addEventListener("click", () => {
+        localStorage.removeItem(STORAGE_KEY);
+        updateCardState();
+        refreshToolbar();
+      });
+
+      document.getElementById("whatsapp-prague").addEventListener("click", () => {
+        const vibe = document.getElementById("vibe").value;
+        const people = document.getElementById("people").value;
+        const dates = document.getElementById("dates").value;
+        const saved = getSaved();
+        const namesList = saved.map((id, idx) => `${idx+1}. ${getDisplayName(id)}`).join("\n");
+        let msg = `This is your Prague mini-itinerary for today:\n${namesList}\n\nVibe: ${vibe}\nGroup size: ${people}`;
+        if (dates.trim()) msg += `\nDates: ${dates}`;
+        msg += `\nRecommended by Natsu & Kasii.`;
+        const phone = "1234567890"; // replace with real number
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, "_blank");
+      });
+    </script>
+  </body>
+</html>

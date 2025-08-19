@@ -1,145 +1,1016 @@
----
-import '../styles/global.css';
----
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Natsu & Kasii — Travel Memoir</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Natsu & Kashii</title>
+
+    <!-- Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Zeyada&family=Ephesis&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Serif+Display&display=swap"
       rel="stylesheet"
     />
+
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(to bottom, #fff5f7, #fde2e4);
-        font-family: 'Ephesis', cursive;
-        overflow-x: hidden;
+      :root {
+        --accent: #d984aa;
+        --accent2: #f4c0e0;
+        --soft-bg: #fff7f9;
+        --heading: 'Playfair Display', serif;
+        --decor: 'DM Serif Display', serif;
+        --muted: #6f6f7f;
+        --radius: 16px;
+        --shadow: 0 35px 90px -15px rgba(111, 46, 99, 0.15);
       }
 
-      .wrapper {
-        padding: 4rem 2rem;
+      * { box-sizing: border-box; }
+
+      body {
+        font-family: var(--heading);
+        background-color: var(--soft-bg);
+        color: #333;
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem;
+        background-color: #fdebef;
+        font-size: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      nav a {
+        color: #b94c7a;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      header {
         text-align: center;
+        padding: 2rem 1rem 1rem;
+      }
+
+      h1 {
+        font-family: var(--decor);
+        font-size: 3.5rem;
+        color: var(--accent);
+        margin: 0;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 2rem;
+      }
+
+      .natsukashii-block {
+        position: relative;
+        text-align: center;
+        max-width: 780px;
+        margin: 0 auto 4rem;
+        padding: 2rem 1.5rem 3rem;
+        background-color: #fdebef;
+        border-radius: 16px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .morph-container {
+        position: relative;
+        margin: 0 auto 1.25rem;
+        padding: 1rem;
+        min-height: 120px;
+      }
+      .kanji,
+      .english {
+        font-size: 2.6rem;
+        font-weight: 700;
+        transition: opacity .8s ease, transform .8s ease;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        line-height: 1.1;
+      }
+      .kanji { font-family: var(--decor); color: var(--accent); }
+      .english {
+        font-family: system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+        color: #4d3f5f;
+        opacity: 0;
+      }
+      .audio-wrapper {
+        margin-top: 100px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.9rem;
+      }
+      .audio-wrapper button {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: filter .2s;
+      }
+      .audio-wrapper button:hover { filter: brightness(1.1); }
+      .audio-wrapper label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .description {
+        margin: 1rem auto 1.5rem;
+        font-size: 1rem;
+        max-width: 700px;
+        color: #4f445f;
+      }
+
+      .natsukashii-block img {
+        width: 70%;
+        margin-top: 1rem;
+        border-radius: 12px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        object-fit: cover;
+      }
+
+      .profile-section {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin: 4rem 0;
+      }
+
+      .profile-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 1.5rem;
+        width: 280px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        transition: transform 0.3s ease;
+        position: relative;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .profile-card:hover {
+        transform: scale(1.03);
+      }
+
+      .profile-card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        object-fit: cover;
+      }
+
+      .profile-card h3 {
+        margin: 0.5rem 0 0.2rem;
+        color: #b94c7a;
+        font-size: 1.4rem;
+      }
+
+      .profile-card p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: #666;
+      }
+
+      #cities {
+        padding: 3rem 1rem;
+        background: #fff7f9;
+      }
+
+      .city-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
         max-width: 1000px;
         margin: 0 auto;
       }
 
-      h1 {
-        font-size: 4rem;
-        color: #de5d83;
-        margin-bottom: 0.5rem;
-        font-family: 'Zeyada', cursive;
-      }
-
-      p {
-        font-size: 1.8rem;
-        color: #5a4e4d;
-        font-family: 'Ephesis', cursive;
-      }
-
-      .city-grid {
-        margin-top: 4rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-      }
-
-      .card {
-        background: #fff;
-        border-radius: 20px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
+      .city-card {
+        border-radius: 16px;
         overflow: hidden;
-        position: relative;
-        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+        background: white;
       }
 
-      .card:hover {
-        transform: scale(1.02);
+      .city-card:hover {
+        transform: scale(1.05);
       }
 
-      .card img {
+      .city-card img {
         width: 100%;
-        height: 220px;
+        height: 180px;
         object-fit: cover;
-        border-bottom: 1px solid #f8d7da;
+         object-position: top center;
+  height: auto; }
+      .caption {
+        padding: 1rem;
+        text-align: center;
+        background: #fff;
+        font-weight: 600;
+        color: #b94c7a;
       }
 
-      .card-content {
-        padding: 1.5rem;
+      .searchbar {
+        max-width: 400px;
+        margin: 0 auto 2rem;
+        display: flex;
+        justify-content: center;
       }
 
-      .card h2 {
-        margin: 0;
-        font-size: 2rem;
-        color: #c94d7c;
-        font-family: 'Zeyada', cursive;
+      .searchbar input {
+        padding: 0.8rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        width: 100%;
+        font-size: 1rem;
       }
 
-      .card p {
-        font-size: 1.4rem;
-        color: #666;
-        font-family: 'Ephesis', cursive;
+      /* Map + pins */
+      .natsukashii-map-wrapper {
+        position: relative;
+        margin: 2rem auto 4rem;
+        max-width: 1000px;
+        border-radius: 16px;
+        overflow: visible;
+        padding: 1rem 1.5rem 2rem;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: var(--shadow);
       }
-
-      .animated-bg {
+      .natsukashii-map-wrapper h2 {
+        margin-top: 0;
+        font-size: 2.4rem;
+        font-family: var(--heading);
+      }
+      .natsukashii-map-wrapper p {
+        margin: 4px 0 14px;
+        color: #444;
+      }
+      .natsukashii-map-inner {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1000 / 450;
+      }
+      .natsukashii-map-inner img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        border-radius: 14px;
+        pointer-events: none;
+        user-select: none;
+      }
+      .pin {
         position: absolute;
-        top: -100px;
-        right: -100px;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(circle, #ffdde1, #f3c6d3);
-        filter: blur(60px);
-        z-index: -1;
-        animation: float 6s ease-in-out infinite;
+        width: 18px;
+        height: 18px;
+        background: var(--accent);
+        border: 2px solid white;
+        border-radius: 50%;
+        box-shadow: 0 12px 30px -5px rgba(217, 132, 170, 0.6);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform .25s ease, box-shadow .25s ease;
+      }
+      .pin::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: white;
+        border-radius: 50%;
+      }
+      .pin:hover,
+      .pin:focus {
+        transform: scale(1.3);
+        box-shadow: 0 20px 50px -5px rgba(217, 132, 170, 0.85);
+        z-index: 5;
+        outline: none;
       }
 
-      @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
+      /* Preview tooltip on hover */
+      .preview-tooltip {
+        position: absolute;
+        background: white;
+        border-radius: 12px;
+        padding: 10px 14px;
+        box-shadow: 0 20px 60px -10px rgba(111, 46, 99, 0.15);
+        font-size: 0.75rem;
+        max-width: 180px;
+        z-index: 300;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .preview-tooltip .title {
+        font-weight: 600;
+        margin: 0;
+      }
+      .preview-tooltip .meta {
+        font-size: 0.6rem;
+        color: var(--muted);
+      }
+      .preview-tooltip .short {
+        margin: 6px 0 0;
+      }
+
+      /* Postcard flip card */
+      .postcard-wrapper {
+        position: absolute;
+        pointer-events: auto;
+        z-index: 200;
+        width: 260px;
+        perspective: 900px;
+        font-size: 0.85rem;
+        font-family: system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+      }
+      .postcard {
+        position: relative;
+        width: 100%;
+        min-height: 160px;
+        border-radius: 14px;
+        transform-style: preserve-3d;
+        transition: transform .6s ease;
+        box-shadow: 0 35px 100px -10px rgba(111, 46, 99, 0.2);
+        cursor: default;
+        background: white;
+        overflow: hidden;
+      }
+      .postcard.flipped {
+        transform: rotateY(180deg);
+      }
+      .postcard-side {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 14px 16px;
+        border-radius: 14px;
+      }
+      .postcard-front {
+        background: white;
+      }
+      .postcard-back {
+        background: #f9f3f8;
+        transform: rotateY(180deg);
+      }
+      .postcard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .postcard-title {
+        margin: 0;
+        font-family: var(--heading);
+        font-size: 1.1rem;
+        line-height: 1.1;
+      }
+      .badge {
+        background: var(--accent2);
+        color: #4b3f5f;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 0.5rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-top: 2px;
+      }
+      .timestamp {
+        font-size: 0.55rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .postcard-image {
+        margin: 8px 0;
+        border-radius: 10px;
+        overflow: hidden;
+        flex: 1;
+        background: #eee;
+      }
+      .postcard-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .postcard-desc {
+        margin: 6px 0 0;
+        flex: none;
+        font-size: 0.8rem;
+        line-height: 1.2;
+        color: #4f4568;
+      }
+      .flip-hint {
+        font-size: 0.5rem;
+        margin-top: 4px;
+        color: #888;
+      }
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 1rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #999;
+        padding: 4px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .close-btn:hover {
+        color: #555;
+      }
+      .postcard-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 6px;
+        gap: 6px;
+      }
+      .location-badge {
+        font-size: 0.55rem;
+        background: rgba(49, 74, 95, 0.1);
+        padding: 4px 10px;
+        border-radius: 8px;
+        display: inline-block;
+      }
+
+      .postcard-wrapper::after {
+        content: "";
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        background: white;
+        transform: rotate(45deg);
+        top: 100%;
+        left: 20px;
+        box-shadow: 0 10px 25px -5px rgba(111, 46, 99, 0.1);
+        border-radius: 2px;
+        z-index: -1;
+      }
+
+      footer {
+        padding: 2rem;
+        background-color: #f9e0e8;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #888;
+        margin-top: 3rem;
+      }
+
+      @media (max-width: 900px) {
+        .postcard-wrapper {
+          width: 220px;
+        }
       }
     </style>
   </head>
-  <body>
-    <div class="animated-bg"></div>
-    <div class="wrapper">
-      <h1>Natsu & Kasii</h1>
-      <p>
-        A dreamy travel scrapbook of two bestfriends Purvi & Ayushi — where city streets become memories, coffees become poetry, and train rides echo laughter.
-      </p>
 
-      <div class="city-grid">
-        <div class="card">
-          <img src="/images/berlin.png" alt="Berlin" />
-          <div class="card-content">
-            <h2>Berlin</h2>
-            <p>The city of walls, scars, and soul-stirring street jazz.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="/images/edinburgh.png" alt="Edinburgh" />
-          <div class="card-content">
-            <h2>Edinburgh</h2>
-            <p>Rain, books, castles — and the scent of stories.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="/images/paris.png" alt="Paris" />
-          <div class="card-content">
-            <h2>Paris</h2>
-            <p>More than romance — a diary written in croissants and cobblestones.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="/images/prague.png" alt="Prague" />
-          <div class="card-content">
-            <h2>Prague</h2>
-            <p>Golden rooftops, time machines, and quiet love letters.</p>
-          </div>
+  <body>
+    <nav>
+      <a href="#top">Home</a>
+      <a href="#cities">Cities</a>
+      <a href="/blog">Blog</a>
+      <a href="/about">About</a>
+    </nav>
+
+    <header id="top">
+      <h1>Natsu & Kashii</h1>
+      <div class="tagline">A poetic travel journal of pastel places & memories</div>
+    </header>
+
+    <div class="natsukashii-block" id="natsu-morph">
+      <div class="morph-container" aria-label="Natsukashii morphing meaning">
+        <div class="kanji" aria-hidden="true">なつかしい</div>
+        <div class="english" aria-hidden="true">evoking fond memories of the past; nostalgic</div>
+        <div class="audio-wrapper">
+          <button id="play-voice">What it means to us ▶</button>
+          <label>
+            <input type="checkbox" id="ambient-toggle" />
+            Ambient sound (opt-in)
+          </label>
         </div>
       </div>
+      <div class="description">
+        <p>
+          A Japanese word evoking warm nostalgia, the gentle joy of a memory returning. This blog
+          is our scrapbook of fleeting beauty: trains, cafés, skies, and the heartbeats of places.
+        </p>
+      </div>
+      <img src="/images/Natsukashiii.png" alt="Natsukashii definition card" />
+      <!-- Audio elements: replace src with real recordings -->
+      <audio id="voice-snippet" src="/audio/natsukashii-voice.mp3" preload="auto"></audio>
+      <audio id="ambient-sound" src="/audio/cafe-ambience.mp3" loop preload="auto"></audio>
     </div>
+
+    <div class="profile-section">
+      <a href="https://instagram.com/probablypurvi" target="_blank" class="profile-card">
+        <img src="/images/purvi.jpeg" alt="Purvi" />
+        <h3>Purvi Jain</h3>
+        <p>@probablypurvi</p>
+      </a>
+
+      <a href="https://instagram.com/ayushi_meharwal" target="_blank" class="profile-card">
+        <img src="/images/ayushi.png" alt="Ayushi" />
+        <h3>Ayushi Meharwal</h3>
+        <p>@ayushi_meharwal</p>
+      </a>
+    </div>
+
+    <div id="cities">
+      <div class="searchbar">
+        <input id="search-input" type="text" placeholder="Search cities..." />
+      </div>
+
+      <div class="city-grid">
+        <a href="/cities/berlin" class="city-card-link">
+          <div class="city-card">
+            <img src="/images/berlin.png" alt="Berlin" />
+            <div class="caption">Berlin</div>
+          </div>
+        </a>
+        <a href="/cities/edinburgh" class="city-card-link">
+          <div class="city-card">
+            <img src="/images/edinburgh.png" alt="Edinburgh" />
+            <div class="caption">Edinburgh</div>
+          </div>
+        </a>
+        <a href="/cities/belfast" class="city-card-link">
+          <div class="city-card">
+            <img src="/images/belfast.png" alt="Belfast" />
+            <div class="caption">Belfast</div>
+          </div>
+        </a>
+        <a href="/cities/budapest" class="city-card-link">
+          <div class="city-card">
+            <img src="/images/londonderry.png" alt="Budapest" />
+            <div class="caption">Budapest</div>
+          </div>
+        </a>
+        <a href="/cities/paris" class="city-card-link">
+          <div class="city-card">
+            <img src="/images/paris.png" alt="Paris" />
+            <div class="caption">Paris</div>
+          </div>
+        </a>
+        <a href="/cities/glasgow" class="city-card-link">
+          <div class="city-card">
+            <img src="/images/glasgow.png" alt="Glasgow" />
+            <div class="caption">Glasgow</div>
+          </div>
+        </a>
+        <a href="/cities/vienna" class="city-card-link">
+          <div class="city-card">
+            <img src="/images/vienna.png" alt="Vienna" />
+            <div class="caption">Vienna</div>
+          </div>
+        </a>
+        <a href="/cities/prague" class="city-card-link">
+          <div class="city-card">
+            <img src="/images/prague.png" alt="Prague" />
+            <div class="caption">Prague</div>
+          </div>
+        </a>
+        <a href="/cities/versailles" class="city-card-link">
+          <div class="city-card">
+            <img src="/images/versailles.png" alt="Versailles" />
+            <div class="caption">Versailles</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Natsukashii World Map with interactive postcards -->
+    <div class="natsukashii-map-wrapper" aria-label="Natsukashii World Map">
+      <h2>Natsukashii World Map</h2>
+      <p>
+        Places we’ve been across the world, pinned like memories. Click or hover a heart to open its postcard with location and timestamp. Flip for the story.
+      </p>
+      <div class="natsukashii-map-inner" id="natsukashii-map">
+        <img src="/images/map.png" alt="Illustrated world map with pastel pins" aria-hidden="true" />
+        <!-- Pins dynamically inserted -->
+      </div>
+    </div>
+
+    <footer>
+      <div>© 2025 Natsu & Kasii. All rights reserved.</div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // ------------ Morphing Natsukashii Interaction -------------
+      (function () {
+        const kanjiEl = document.querySelector('.kanji');
+        const englishEl = document.querySelector('.english');
+        const voiceBtn = document.getElementById('play-voice');
+        const ambientToggle = document.getElementById('ambient-toggle');
+        const voice = document.getElementById('voice-snippet');
+        const ambient = document.getElementById('ambient-sound');
+        let sequencePlayed = false;
+
+        function playSequence() {
+          if (sequencePlayed) return;
+          sequencePlayed = true;
+          // show kanji (already visible), after 2s crossfade to english
+          setTimeout(() => {
+            kanjiEl.style.opacity = '0';
+            englishEl.style.opacity = '1';
+          }, 1800);
+        }
+
+        // start when in view
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                playSequence();
+                observer.disconnect();
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+        observer.observe(document.getElementById('natsu-morph'));
+
+        voiceBtn.addEventListener('click', () => {
+          voice.currentTime = 0;
+          voice.play().catch(() => {}); // silent fail
+        });
+
+        ambientToggle.addEventListener('change', () => {
+          if (ambientToggle.checked) {
+            ambient.volume = 0.35;
+            ambient.play().catch(() => {});
+          } else {
+            ambient.pause();
+          }
+        });
+      })();
+
+      // ------------ Map + Postcards Logic -------------
+      (function () {
+        const postcards = [
+          {
+            id: 'glasgow',
+            city: 'Glasgow',
+            coords: { left: '22%', top: '22%' },
+            timestamp: 'Apr 2022',
+            locationBadge: 'Glasgow, UK',
+            short: 'Rainy walks, hidden murals, late-night music in basement bars.',
+            long:
+              'Rain softened the city; we ducked into a tiny shop and the owner played songs from a dusty shelf. The sound echoed like a memory we didn\'t know we had.',
+            image: '/images/postcards/glasgow.jpg',
+          },
+          {
+            id: 'edinburgh',
+            city: 'Edinburgh',
+            coords: { left: '25%', top: '18%' },
+            timestamp: 'Apr 2022',
+            locationBadge: 'Edinburgh, UK',
+            short: 'Castle silhouettes at dusk, storytelling over whisky.',
+            long:
+              'Fog rolled over the hill and the castle appeared like a storybook. We sipped coffee from a street stall while the city slowly woke up.',
+            image: '/images/postcards/edinburgh.jpg',
+          },
+          {
+            id: 'paris',
+            city: 'Paris',
+            coords: { left: '41%', top: '40%' },
+            timestamp: 'Jun 2023',
+            locationBadge: 'Paris, France',
+            short: 'Boulevard light and café pauses.',
+            long:
+              'Light pooled into the river, and conversation slipped into quiet comfort. Paris felt like a soft exhale.',
+            image: '/images/postcards/paris-sunset.jpg',
+          },
+          {
+            id: 'versailles',
+            city: 'Versailles',
+            coords: { left: '38%', top: '43%' },
+            timestamp: 'Jun 2023',
+            locationBadge: 'Versailles, France',
+            short: 'Royal gardens with secret hush.',
+            long:
+              'Symmetry of fountains and hush of hedges made us feel small in the most beautiful way; history floated lightly around us.',
+            image: '/images/postcards/versailles.jpg',
+          },
+          {
+            id: 'prague',
+            city: 'Prague',
+            coords: { left: '46%', top: '45%' },
+            timestamp: 'Sep 2023',
+            locationBadge: 'Prague, Czechia',
+            short: 'Cobblestone bridges in amber light.',
+            long:
+              'We watched the city slowly brighten, the bridges becoming delicate silhouettes. Early mornings here felt like secret gifts.',
+            image: '/images/postcards/prague.jpg',
+          },
+          {
+            id: 'vienna',
+            city: 'Vienna',
+            coords: { left: '53%', top: '47%' },
+            timestamp: 'Oct 2023',
+            locationBadge: 'Vienna, Austria',
+            short: 'Waltz rhythms and candlelit glow.',
+            long:
+              'The city moved like music; we followed the cadence of hidden concerts and spilled wine with strangers turned friends.',
+            image: '/images/postcards/vienna.jpg',
+          },
+          {
+            id: 'berlin',
+            city: 'Berlin',
+            coords: { left: '50%', top: '37%' },
+            timestamp: 'Apr 2024',
+            locationBadge: 'Berlin, Germany',
+            short: 'Graffiti stories at sunrise.',
+            long:
+              'Layers of history painted on walls; we drifted through alleys tasting flavors of reinvention and resilience.',
+            image: '/images/postcards/berlin.jpg',
+          },
+          {
+            id: 'delhi',
+            city: 'Delhi',
+            coords: { left: '78%', top: '55%' },
+            timestamp: 'Dec 2021',
+            locationBadge: 'Delhi, India',
+            short: 'Spice markets humming like rhythm.',
+            long:
+              'Crowds, colors, and flavors collided; we took a breath in a quiet courtyard and felt the old city soften around us.',
+            image: '/images/postcards/delhi.jpg',
+          },
+          {
+            id: 'raipur',
+            city: 'Raipur',
+            coords: { left: '80%', top: '60%' },
+            timestamp: 'Dec 2021',
+            locationBadge: 'Raipur, India',
+            short: 'Markets and warm chai stories.',
+            long:
+              'Small conversations over steaming chai turned into hours of shared laughter. Raipur taught us hospitality is given.',
+            image: '/images/postcards/raipur.jpg',
+          },
+          {
+            id: 'mumbai',
+            city: 'Mumbai',
+            coords: { left: '77%', top: '65%' },
+            timestamp: 'Jan 2022',
+            locationBadge: 'Mumbai, India',
+            short: 'Monsoon rhythms by the waterfront.',
+            long:
+              'Contrast between frenetic streets and calming waves made evening walks feel layered—chaotic yet comforting.',
+            image: '/images/postcards/mumbai.jpg',
+          },
+        ];
+
+        const mapEl = document.getElementById('natsukashii-map');
+
+        let currentPreview = null;
+        let currentPostcard = null;
+
+        function createPin(data) {
+          const btn = document.createElement('button');
+          btn.className = 'pin';
+          btn.setAttribute('aria-label', `${data.city} memory`);
+          btn.setAttribute('data-id', data.id);
+          btn.style.left = data.coords.left;
+          btn.style.top = data.coords.top;
+          btn.style.transform = 'translate(-50%, -50%)';
+          btn.type = 'button';
+          return btn;
+        }
+
+        function createPreviewTooltip(data, targetPin) {
+          removePreviewTooltip();
+          const tooltip = document.createElement('div');
+          tooltip.className = 'preview-tooltip';
+          tooltip.innerHTML = `
+            <div class="title">${data.city}</div>
+            <div class="meta">${data.timestamp}</div>
+            <div class="short">${data.short}</div>
+          `;
+          document.body.appendChild(tooltip);
+          const rect = targetPin.getBoundingClientRect();
+          // place above pin if possible
+          let top = rect.top - tooltip.offsetHeight - 8;
+          if (top < 8) top = rect.bottom + 8;
+          let left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2;
+          if (left + tooltip.offsetWidth > window.innerWidth - 12) {
+            left = window.innerWidth - tooltip.offsetWidth - 12;
+          }
+          if (left < 8) left = 8;
+          tooltip.style.top = `${top + window.scrollY}px`;
+          tooltip.style.left = `${left + window.scrollX}px`;
+          currentPreview = tooltip;
+        }
+
+        function removePreviewTooltip() {
+          if (currentPreview) {
+            currentPreview.remove();
+            currentPreview = null;
+          }
+        }
+
+        function createPostcard(data, pin) {
+          // remove existing
+          if (currentPostcard) currentPostcard.remove();
+          const wrapper = document.createElement('div');
+          wrapper.className = 'postcard-wrapper';
+          wrapper.dataset.for = data.id;
+          wrapper.style.opacity = '0';
+          wrapper.style.pointerEvents = 'none';
+
+          wrapper.innerHTML = `
+            <div class="postcard" tabindex="0">
+              <div class="postcard-side postcard-front">
+                <div class="postcard-header">
+                  <div>
+                    <p class="postcard-title">${data.city}</p>
+                    <div class="badge">Memory</div>
+                    <div class="timestamp">${data.timestamp}</div>
+                  </div>
+                  <button class="close-btn" aria-label="Close postcard">&times;</button>
+                </div>
+                <div class="postcard-image">
+                  <img src="${data.image}" alt="${data.city} snapshot" onerror="this.src='https://via.placeholder.com/260x140?text=No+Image'"/>
+                </div>
+                <p class="postcard-desc">${data.short}</p>
+                <div class="flip-hint">Click to flip for more</div>
+              </div>
+              <div class="postcard-side postcard-back">
+                <div class="postcard-header">
+                  <div>
+                    <p class="postcard-title">${data.city} Details</p>
+                    <div class="timestamp">${data.timestamp}</div>
+                  </div>
+                  <button class="close-btn" aria-label="Close postcard">&times;</button>
+                </div>
+                <div class="postcard-desc">
+                  <p><strong>Location:</strong> ${data.locationBadge}</p>
+                  <p><strong>Story:</strong> ${data.long}</p>
+                </div>
+                <div class="postcard-footer">
+                  <div class="location-badge">${data.locationBadge}</div>
+                  <div style="font-size:0.55rem; color:#888;">Part of your free mini-itinerary</div>
+                </div>
+              </div>
+            </div>
+          `;
+          document.body.appendChild(wrapper);
+          // position logic
+          function position() {
+            const pinRect = pin.getBoundingClientRect();
+            const wrapRect = wrapper.getBoundingClientRect();
+            let top = pinRect.bottom + 8;
+            if (top + wrapRect.height > window.innerHeight) {
+              top = pinRect.top - wrapRect.height - 8;
+            }
+            let left = pinRect.left;
+            if (left + wrapRect.width > window.innerWidth - 12) {
+              left = window.innerWidth - wrapRect.width - 12;
+            }
+            if (left < 8) left = 8;
+            wrapper.style.top = `${top + window.scrollY}px`;
+            wrapper.style.left = `${left + window.scrollX}px`;
+          }
+
+          // show
+          requestAnimationFrame(() => {
+            wrapper.style.opacity = '1';
+            wrapper.style.pointerEvents = 'auto';
+            position();
+          });
+          currentPostcard = wrapper;
+
+          // interactions
+          const card = wrapper.querySelector('.postcard');
+          card.addEventListener('click', (e) => {
+            if (e.target.closest('.close-btn')) return;
+            card.classList.toggle('flipped');
+          });
+          wrapper.querySelectorAll('.close-btn').forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              wrapper.remove();
+              currentPostcard = null;
+            });
+          });
+
+          // click outside closes
+          setTimeout(() => {
+            document.addEventListener('click', outsideClick);
+          }, 0);
+
+          function outsideClick(e) {
+            if (
+              currentPostcard &&
+              !currentPostcard.contains(e.target) &&
+              !pin.contains(e.target)
+            ) {
+              currentPostcard.remove();
+              currentPostcard = null;
+              document.removeEventListener('click', outsideClick);
+            }
+          }
+
+          // reposition on scroll
+          window.addEventListener('scroll', () => {
+            if (currentPostcard === wrapper) position();
+          });
+          window.addEventListener('resize', () => {
+            if (currentPostcard === wrapper) position();
+          });
+        }
+
+        postcards.forEach((p) => {
+          const pin = createPin(p);
+          mapEl.appendChild(pin);
+
+          pin.addEventListener('mouseenter', () => {
+            createPreviewTooltip(p, pin);
+          });
+          pin.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+              if (!pin.matches(':hover')) removePreviewTooltip();
+            }, 100);
+          });
+          pin.addEventListener('click', (e) => {
+            e.stopPropagation();
+            removePreviewTooltip();
+            createPostcard(p, pin);
+          });
+          pin.addEventListener('focus', () => {
+            createPreviewTooltip(p, pin);
+          });
+          pin.addEventListener('blur', () => {
+            removePreviewTooltip();
+          });
+        });
+
+        // global hide if click elsewhere
+        document.addEventListener('click', (e) => {
+          if (currentPostcard && !currentPostcard.contains(e.target)) {
+            currentPostcard.remove();
+            currentPostcard = null;
+          }
+          removePreviewTooltip();
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            if (currentPostcard) currentPostcard.remove(), (currentPostcard = null);
+            removePreviewTooltip();
+          }
+        });
+      })();
+
+      // ------------ City search filter -------------
+      document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('search-input');
+        const cityCards = document.querySelectorAll('.city-card-link');
+
+        if (searchInput) {
+          searchInput.addEventListener('input', function () {
+            const query = searchInput.value.toLowerCase();
+            cityCards.forEach((cardLink) => {
+              const captionEl = cardLink.querySelector('.caption');
+              if (!captionEl) return;
+              const caption = captionEl.textContent.toLowerCase();
+              if (caption.includes(query)) {
+                cardLink.style.display = '';
+              } else {
+                cardLink.style.display = 'none';
+              }
+            });
+          });
+        }
+      });
+    </script>
   </body>
 </html>
