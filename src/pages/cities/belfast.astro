@@ -746,7 +746,7 @@ title: "Belfast"
         picks.forEach((p, i) => {
           text += `${i + 1}. ${p}\n`;
         });
-        text += `Recommended by Natsu & Kasii. View: ${window.location.href.split(
+        text += `Recommended by Natsu & Kashii. View: ${window.location.href.split(
           "#"
         )[0]}`;
         itineraryTextEl.textContent = text;
@@ -840,11 +840,11 @@ title: "Belfast"
         });
         msg += `Vibe: ${vibe}\nGroup size: ${people}\n`;
         if (dates.trim()) msg += `Dates: ${dates}\n`;
-        msg += `Recommended by Natsu & Kasii.\nSee more: ${window.location.href
+        msg += `Recommended by Natsu & Kashii.\nSee more: ${window.location.href
           .split("#")[0]
           .replaceAll(" ", "%20")}`;
 
-        const phone = "1234567890"; // replace with real WhatsApp number if sending to self
+        const phone = "+917999465459"
         const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
         window.open(url, "_blank");
       });
